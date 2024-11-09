@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://gwmccn4ulpt8"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
+[ext_resource type="Script" path="res://Scripts/stock_screen.gd" id="1_lcxw3"]
+[ext_resource type="Script" path="res://Scripts/LineUpdate.gd" id="1_s20ie"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="2_l7qn3"]
+[ext_resource type="Texture2D" uid="uid://dwja1c7mtu6tu" path="res://icon.svg" id="3_kmc88"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2212"]
+size = Vector2(413, 226.31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlmcx"]
+size = Vector2(130.462, 132.923)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3ugpv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(580, 325)
+
+[node name="StockScreen" type="Area2D" parent="."]
+position = Vector2(218, 146)
+scale = Vector2(1, 1.183)
+script = ExtResource("1_lcxw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StockScreen"]
+shape = SubResource("RectangleShape2D_b2212")
+
+[node name="Stock1" type="Line2D" parent="StockScreen"]
+position = Vector2(-210.5, -115.034)
+points = PackedVector2Array(0, 0, 100, 90, 200, 100, 300, 200, 400, 210)
+script = ExtResource("1_s20ie")
+
+[node name="MoveIn10" type="Timer" parent="StockScreen/Stock1"]
+wait_time = 7.0
+autostart = true
+
+[node name="StockScreen2" type="Area2D" parent="."]
+position = Vector2(677, 148)
+scale = Vector2(1, 1.183)
+script = ExtResource("1_lcxw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StockScreen2"]
+shape = SubResource("RectangleShape2D_b2212")
+
+[node name="Stock1" type="Line2D" parent="StockScreen2"]
+position = Vector2(-210.5, -115.034)
+points = PackedVector2Array(0, 0, 100, 90, 200, 100, 300, 200, 400, 210)
+script = ExtResource("1_s20ie")
+
+[node name="MoveIn10" type="Timer" parent="StockScreen2/Stock1"]
+wait_time = 7.0
+autostart = true
+
+[node name="StockScreen3" type="Area2D" parent="."]
+position = Vector2(218, 467)
+scale = Vector2(1, 1.183)
+script = ExtResource("1_lcxw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StockScreen3"]
+shape = SubResource("RectangleShape2D_b2212")
+
+[node name="Stock1" type="Line2D" parent="StockScreen3"]
+position = Vector2(-210.5, -115.034)
+points = PackedVector2Array(0, 0, 100, 90, 200, 100, 300, 200, 400, 210)
+script = ExtResource("1_s20ie")
+
+[node name="MoveIn10" type="Timer" parent="StockScreen3/Stock1"]
+wait_time = 7.0
+autostart = true
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2(1011, 515)
+gravity_scale = 0.0
+script = ExtResource("2_l7qn3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.40625, 0.40625)
+texture = ExtResource("3_kmc88")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(0.40625, 0.40625)
+shape = SubResource("RectangleShape2D_vlmcx")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[connection signal="body_exited" from="StockScreen" to="Player" method="_on_stock_screen_body_exited"]
+[connection signal="body_shape_entered" from="StockScreen" to="." method="_on_stock_screen_body_shape_entered"]
+[connection signal="body_shape_entered" from="StockScreen" to="Player" method="_on_stock_screen_body_shape_entered"]
+[connection signal="body_shape_exited" from="StockScreen" to="Player" method="_on_stock_screen_body_shape_exited"]
+[connection signal="mouse_shape_entered" from="StockScreen" to="Player" method="_on_stock_screen_mouse_shape_entered"]
+[connection signal="timeout" from="StockScreen/Stock1/MoveIn10" to="StockScreen/Stock1" method="_on_move_in_10_timeout"]
+[connection signal="area_entered" from="StockScreen2" to="Player" method="_on_stock_screen_area_entered"]
+[connection signal="body_entered" from="StockScreen2" to="Player" method="_on_stock_screen_body_entered"]
+[connection signal="body_exited" from="StockScreen2" to="Player" method="_on_stock_screen_body_exited"]
+[connection signal="body_shape_entered" from="StockScreen2" to="Player" method="_on_stock_screen_body_shape_entered"]
+[connection signal="body_shape_exited" from="StockScreen2" to="Player" method="_on_stock_screen_body_shape_exited"]
+[connection signal="timeout" from="StockScreen2/Stock1/MoveIn10" to="StockScreen2/Stock1" method="_on_move_in_10_timeout"]
+[connection signal="area_entered" from="StockScreen3" to="Player" method="_on_stock_screen_area_entered"]
+[connection signal="body_entered" from="StockScreen3" to="Player" method="_on_stock_screen_body_entered"]
+[connection signal="body_exited" from="StockScreen3" to="Player" method="_on_stock_screen_body_exited"]
+[connection signal="body_shape_entered" from="StockScreen3" to="Player" method="_on_stock_screen_body_shape_entered"]
+[connection signal="body_shape_exited" from="StockScreen3" to="Player" method="_on_stock_screen_body_shape_exited"]
+[connection signal="timeout" from="StockScreen3/Stock1/MoveIn10" to="StockScreen3/Stock1" method="_on_move_in_10_timeout"]
+[connection signal="body_entered" from="Player" to="StockScreen" method="_on_rigid_body_2d_body_entered"]
