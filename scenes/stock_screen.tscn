@@ -14,5 +14,6 @@ shape = SubResource("RectangleShape2D_vtt0j")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(42, 114, 137, 162, 227, 77, 275, 155, 346, 71)
+width = 2.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -14,11 +14,3 @@ func _init(count) -> void:
 
 func getStocks() -> Array:
 	return stocks
-
-
-func process(detla: float):
-	for index in stocks.size():
-		var stock = stocks[index]
-			
-		stock.process(detla)
-	return stocks

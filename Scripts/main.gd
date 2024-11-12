@@ -4,7 +4,7 @@ var playerScene = load("res://scenes/player.tscn")
 var StockHandler = load("res://Scripts/stock_handler.gd")
 var stockScreenScene = load("res://scenes/stock_screen.tscn")
 
-var stockHandler
+var stockHandler : StockHandler
 
 const STOCK_COUNT = 4
 var stockScreens = []
@@ -20,21 +20,23 @@ func _ready():
 	stockHandler = StockHandler.new(STOCK_COUNT)
 	add_child(stockHandler)
 
+	var stocks = stockHandler.getStocks()
 	for n in STOCK_COUNT:
 		var stockScreen : StockScreen = stockScreenScene.instantiate()
 		stockScreens.append(stockScreen)
 		
 		var xCoord = n%StockScreenCountX
 		var yCoord = n/StockScreenCountX
-		print(str(xCoord," ",yCoord))
 		
 		stockScreen.position = Vector2((StockScreenSize+StockScreenPadding)*Vector2(xCoord,yCoord))
-		print(stockScreen.position)
-		
+	
 		add_child(stockScreens[n])
 
 func _process(delta: float) -> void:
-	var stocks = stockHandler.process(delta)
+	var stocks = stockHandler.getStocks()
+	
 	for n in STOCK_COUNT:
-		stockScreens[n].update(stocks[n])
+		var value = stocks[n].process(delta)
+		stockScreens[n].add_price_point(value)
+		
 		
