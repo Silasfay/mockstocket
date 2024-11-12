@@ -1,12 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://gwmccn4ulpt8"]
+[gd_scene load_steps=2 format=3 uid="uid://gwmccn4ulpt8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
-[ext_resource type="PackedScene" uid="uid://cbybk05y27lnk" path="res://scenes/stock_screen.tscn" id="3_1k3cf"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3ugpv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(580, 325)
-
-[node name="StockScreen" parent="." instance=ExtResource("3_1k3cf")]

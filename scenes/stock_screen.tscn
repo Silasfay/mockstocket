@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/stock_screen.gd" id="1_487qi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vtt0j"]
-size = Vector2(353, 190)
+size = Vector2(350, 200)
 
 [node name="StockScreen" type="Area2D"]
 script = ExtResource("1_487qi")
