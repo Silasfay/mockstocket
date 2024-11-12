@@ -1,12 +1,21 @@
 extends Node2D
 
-var stocks = [get_node("/root/Main/StockScreen")]
+var playerScene = load("res://scenes/player.tscn")
+var stockHandlerScene = load("res://scenes/stock_handler.tscn")
 
-var pos = Vector2.ZERO
+var stockHandler
+
+func _ready():
+	var playerInstance = playerScene.instantiate()
+	add_child(playerInstance)
+	stockHandler = stockHandlerScene.instantiate()
+	add_child(stockHandler)
+
+func _process(delta: float) -> void:
+	var stockInfo = stockHandler.dostuff()
+	#stockScreen.Update(stockInfo)
 
 
-func pass_in_coords(x: Vector2): 
-	pos = x
 	
 	
 func Check_quad():

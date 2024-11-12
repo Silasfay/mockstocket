@@ -12,6 +12,5 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if Input.is_action_just_pressed("buy"):
-		print("works") 
-	print("im here") # Replace with function body.
+	print(body)
+	pass # Replace with function body.

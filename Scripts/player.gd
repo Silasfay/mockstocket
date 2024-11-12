@@ -1,16 +1,16 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-const max_speed = 8
+@export var speed := 500 #Pixels per second
 
 
-var hasWon : bool = false
-var stockInv : Array[int] = [0,0,0,0]
-var money : float = 1000
-
-var input = Vector2.ZERO
+var Portfolio
+var Currency
 
 func _process(delta: float) -> void:
-	position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * max_speed # set up func to not let them run offscreen
+	var movementDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	velocity = movementDirection * speed
+	move_and_slide()
+	#position = (position+movement).clamp()
 	if Input.is_action_just_pressed("buy"):
 		print("works") 
 
