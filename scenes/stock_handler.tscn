@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ch5023ia7brq0"]
-
-[ext_resource type="Script" path="res://stock_handler.gd" id="1_vxx8g"]
-
-[node name="StockHandler" type="Node"]
-script = ExtResource("1_vxx8g")
