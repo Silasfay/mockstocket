@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://gwmccn4ulpt8"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
+[ext_resource type="PackedScene" uid="uid://cbybk05y27lnk" path="res://scenes/stock_screen.tscn" id="3_1k3cf"]
+[ext_resource type="Script" path="res://Scripts/news_logic.gd" id="3_rcjia"]
+[ext_resource type="Texture2D" uid="uid://dwja1c7mtu6tu" path="res://icon.svg" id="4_avo27"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3ugpv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(580, 325)
+
+[node name="StockScreen" parent="." instance=ExtResource("3_1k3cf")]
+position = Vector2(-5, 17)
+
+[node name="News" type="Node" parent="StockScreen"]
+script = ExtResource("3_rcjia")
+
+[node name="Timer" type="Timer" parent="StockScreen/News"]
+wait_time = 2.0
+autostart = true
+
+[node name="NewsBank" type="BoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 732.0
+offset_top = -4.0
+offset_right = 1153.0
+offset_bottom = 647.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 2
+vertical = true
+
+[node name="Sprite2D" type="Sprite2D" parent="NewsBank"]
+position = Vector2(213, 328)
+scale = Vector2(3.22656, 5.02344)
+texture = ExtResource("4_avo27")
+
+[connection signal="timeout" from="StockScreen/News/Timer" to="StockScreen/News" method="_on_timer_timeout"]
