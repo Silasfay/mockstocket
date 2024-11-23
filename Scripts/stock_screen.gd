@@ -1,11 +1,15 @@
 class_name StockScreen extends Area2D
 
+
+
 # Constants for graph dimensions and styling
 const MARGIN_PERCENT: float = 0.3  # 30% margin on top and bottom
 const GRAPH_WIDTH: int = 350
 const GRAPH_HEIGHT: int = 200
 const MAX_HISTORY_AGE: float = 5.0  # Maximum age of data points in seconds
 const MIN_POINTS_TO_KEEP: int = 2  # Minimum number of points to keep for drawing
+
+
 
 # History tracking
 class PricePoint:
@@ -19,16 +23,19 @@ class PricePoint:
 # Node references
 @onready var shape: CollisionShape2D = $CollisionShape2D
 @onready var line: Line2D = $Line2D
-var current_stock: Stock = null
+
 var price_history: Array[PricePoint] = []
 var all_time_high: float = -INF
 var all_time_low: float = INF
+var stock: Stock = null
 
 func _ready() -> void:
 	# Ensure required nodes exist
 	assert(shape != null, "CollisionShape2D node not found")
 	assert(line != null, "Line2D node not found")
 
+func setStock(stock:Stock) -> void:
+	self.stock = stock
 
 func add_price_point(price: float) -> void:
 	var current_time = Time.get_ticks_msec() / 1000.0
@@ -90,4 +97,11 @@ func update_graph() -> void:
 		line.set_point_position(i, Vector2(x, y))
 
 func _on_body_entered(body: Node2D) -> void:
-	print("Body entered: ", body.name)
+	if body is Player:
+		body.setHoverignStock(self.stock)
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is Player:
+		if body.hoveredStock == self.stock:
+			body.setHoverignStock(null)

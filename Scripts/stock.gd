@@ -14,8 +14,11 @@ var trend_mean_reversion: float = 0.15
 var trend_max: float = 10.0
 var trend_min: float = -10.0
 
-func _init(name: String) -> void:
+var stock_id = -1
+
+func _init(name: String, id:int) -> void:
 	stock_name = name
+	stock_id = id
 	price_per_share = 100.0
 
 func process(delta: float) -> float:
