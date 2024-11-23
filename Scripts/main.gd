@@ -40,6 +40,7 @@ func _ready():
 	var playerInstance = playerScene.instantiate()
 	add_child(playerInstance)
 
+	#playerInstance.portfolio = [] #TODO set these to zero
 
 	for stockId in STOCK_COUNT:
 		var stockData = STOCK_DATA[stockId]

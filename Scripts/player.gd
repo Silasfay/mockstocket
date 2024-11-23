@@ -4,8 +4,10 @@ var speed := 500 #Pixels per second
 
 var hoveredStock = null
 
-var Portfolio = []
-var Currency = 10000000
+var portfolio = [
+	0,0,0,0
+]
+var currency = 10000000
 
 func setHoverignStock(stock:Stock) -> void:
 	if stock is Stock:
@@ -22,6 +24,7 @@ func _process(delta: float) -> void:
 	#position = (position+movement).clamp()
 	if Input.is_action_just_pressed("buy"):
 		if hoveredStock != null:
+			#Portfolio[] #TODO fix portfolio to enable buying
 			print("buy!")
 		else:
 			print("not hovering!")
