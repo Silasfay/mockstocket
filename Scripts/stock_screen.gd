@@ -34,8 +34,12 @@ func _ready() -> void:
 	assert(shape != null, "CollisionShape2D node not found")
 	assert(line != null, "Line2D node not found")
 
+func _process(delta: float) -> void:
+	get_child(4).text = str(floor(stock.price_per_share * 100)/100)
+
 func setStock(stock:Stock) -> void:
 	self.stock = stock
+	get_child(3).text = stock.stock_name
 
 func add_price_point(price: float) -> void:
 	var current_time = Time.get_ticks_msec() / 1000.0

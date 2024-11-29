@@ -3,6 +3,7 @@ class_name Stock extends Node
 # Stock properties
 var price_per_share: float = 100.0
 var stock_name: String
+var Name_node = get_child(4)
 
 # Movement parameters
 var volatility: float = 5.0  # Random price change per second
@@ -20,10 +21,16 @@ func _init(name: String, id:int) -> void:
 	stock_name = name
 	stock_id = id
 	price_per_share = 100.0
+	print(stock_name)
+	
+	
+func get_price():
+	return price_per_share
 
 func process(delta: float) -> float:
 	_update_trend(delta)
 	_update_price(delta)
+	#get_child(4).text = str(price_per_share)
 	return price_per_share
 
 func _update_trend(delta: float) -> void:
@@ -39,3 +46,9 @@ func _update_price(delta: float) -> void:
 	var random_movement = randf_range(-0.97, 1.0) * volatility * delta
 	var trend_movement = price_per_share * (trend/100.0) * delta
 	price_per_share += random_movement + trend_movement
+	
+
+	
+	
+func setLabelPrice():
+	get_child(4).text = str(price_per_share)

@@ -3,6 +3,7 @@ extends Node2D
 var playerScene = load("res://scenes/player.tscn")
 var stockScreenScene = load("res://scenes/stock_screen.tscn")
 var Stock = load("res://Scripts/stock.gd")
+var Portf = load("res://scenes/portfolio.tscn")
 
 var stockHandler : StockHandler
 
@@ -57,6 +58,7 @@ func _ready():
 		var yCoord = stockId/StockScreenCountX
 		stockScreen.position = Vector2((StockScreenSize+StockScreenPadding)*Vector2(xCoord,yCoord))
 		add_child(stockScreen)
+		
 
 		
 		
