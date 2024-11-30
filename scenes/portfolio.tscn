@@ -15,7 +15,6 @@ font_size = 40
 script = ExtResource("1_qjswi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(348.5, 582.5)
 shape = SubResource("RectangleShape2D_0rimr")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
@@ -25,42 +24,42 @@ scale = Vector2(3, 0.4)
 texture = ExtResource("2_bke11")
 
 [node name="Stock2" type="Label" parent="."]
-offset_left = 130.0
-offset_top = 538.0
-offset_right = 199.0
-offset_bottom = 621.0
+offset_left = -173.0
+offset_top = -46.0
+offset_right = -104.0
+offset_bottom = 37.0
 text = "14"
 label_settings = ExtResource("3_dy7h6")
 
 [node name="Stock" type="Label" parent="."]
-offset_left = 338.0
-offset_top = 541.0
-offset_right = 407.0
-offset_bottom = 624.0
+offset_left = 35.0
+offset_top = -43.0
+offset_right = 104.0
+offset_bottom = 40.0
 text = "15
 "
 label_settings = ExtResource("3_dy7h6")
 
 [node name="Stock3" type="Label" parent="."]
-offset_left = 217.0
-offset_top = 540.0
-offset_right = 320.0
-offset_bottom = 623.0
+offset_left = -86.0
+offset_top = -44.0
+offset_right = 17.0
+offset_bottom = 39.0
 text = "153"
 label_settings = ExtResource("3_dy7h6")
 
 [node name="Stock4" type="Label" parent="."]
-offset_left = 427.0
-offset_top = 541.0
-offset_right = 496.0
-offset_bottom = 710.0
+offset_left = 124.0
+offset_top = -43.0
+offset_right = 193.0
+offset_bottom = 126.0
 text = "15"
 label_settings = ExtResource("3_dy7h6")
 
 [node name="Money" type="Label" parent="."]
-offset_left = 9.0
-offset_top = 555.0
-offset_right = 123.0
-offset_bottom = 610.0
+offset_left = -294.0
+offset_top = -29.0
+offset_right = -180.0
+offset_bottom = 26.0
 text = "10000"
 label_settings = SubResource("LabelSettings_432l2")

@@ -54,8 +54,8 @@ func _ready():
 		stockScreen.setStock(stock)
 		stockScreens.append(stockScreen)
 		
-		var xCoord = stockId%StockScreenCountX
-		var yCoord = stockId/StockScreenCountX
+		var xCoord = stockId%StockScreenCountX + 3
+		var yCoord = stockId/StockScreenCountX + 3
 		stockScreen.position = Vector2((StockScreenSize+StockScreenPadding)*Vector2(xCoord,yCoord))
 		add_child(stockScreen)
 		

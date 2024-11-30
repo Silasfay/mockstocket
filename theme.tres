@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b4idxhebqcqyb"]
+
+[ext_resource type="Texture2D" uid="uid://c353wda65k13j" path="res://Sprites/window.png" id="1_4fs53"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_585n5"]
+texture = ExtResource("1_4fs53")
+texture_margin_left = 50.0
+texture_margin_top = 91.0
+texture_margin_right = 50.0
+texture_margin_bottom = 50.0
+expand_margin_left = 9.0
+expand_margin_right = 9.0
+expand_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4yff"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_585n5")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_q4yff")
