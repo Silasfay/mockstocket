@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgomrtinu1e1a"
-path="res://.godot/imported/Icon.svg-209197100d5fe6cba9c168636c60b76c.ctex"
+uid="uid://bphs0pel71ck6"
+path="res://.godot/imported/Hand.svg-5ef8c069424287b43095cf4f098f2b1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Icon.svg"
-dest_files=["res://.godot/imported/Icon.svg-209197100d5fe6cba9c168636c60b76c.ctex"]
+source_file="res://Hand.svg"
+dest_files=["res://.godot/imported/Hand.svg-5ef8c069424287b43095cf4f098f2b1a.ctex"]
 
 [params]
 
