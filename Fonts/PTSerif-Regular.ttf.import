@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cb7trpfxkxv6i"
-path="res://.godot/imported/PTSerif-Regular.ttf-c40168e2dea408d2cabaa00ad9dd5350.fontdata"
+path="res://.godot/imported/PTSerif-Regular.ttf-e348ab39a1c7574a0791d7708676d80c.fontdata"
 
 [deps]
 
-source_file="res://PTSerif-Regular.ttf"
-dest_files=["res://.godot/imported/PTSerif-Regular.ttf-c40168e2dea408d2cabaa00ad9dd5350.fontdata"]
+source_file="res://Fonts/PTSerif-Regular.ttf"
+dest_files=["res://.godot/imported/PTSerif-Regular.ttf-e348ab39a1c7574a0791d7708676d80c.fontdata"]
 
 [params]
 
