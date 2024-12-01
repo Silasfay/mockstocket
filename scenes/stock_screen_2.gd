@@ -30,12 +30,14 @@ func _process(delta):
 func newsBreak(name : String, target : float):
 	if name != nameLabel.text : return
 	
-	newsImpactTarget = target
+	if newsImpactEnable == true : newsImpactTarget += target
+	else : newsImpactTarget = target
 	newsImpactEnable = true
 	newsImpactTimer = 0.0
 
 func newsHandler(delta : float):
 	## Spikes to the target impact within 3 seconds, then gradually resets to 0 impact after 10 total seconds. This is using a cubic bezier method.
+	## TODO Edgecase of interrupted new ticker
 	var impact = Vector2(0,0)
 	var impactLeftPull = Vector2(-5,newsImpactTarget*2)
 	var impactTarget = Vector2(5,newsImpactTarget*0.5)

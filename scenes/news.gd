@@ -1,7 +1,17 @@
 extends Control
+
 @export var y_size : float
+@export var contentLabel : Label
+
+## TODO Entire thing needs to be in NewsBank and summons children of the news instead.
 
 var newsFeedData = {
+	00: {
+		"Category" : "",
+		"Content" : "",
+		"Stock" : "Initial",
+		"Impact" : 0
+	},
 	01: {
 		"Category" : "Resources",
 		"Content" : "Global demand for electric vehicles increases sharply, driving up the need for lightweight aluminum components.",
@@ -328,13 +338,15 @@ var newsFeedData = {
 	}
 }
 
-var activeNewsFeed = [0,0,0,0,01]
+var activeNews : int = 00
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_custom_minimum_size(Vector2(0,y_size))
+	
+func _process(_delta):
+	contentLabel.text = newsFeedData[activeNews].Content
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func newsFlash(news):
+	## TODO Make the ticker flash when changing. Needs a colorrect
+	activeNews = news
+	return newsFeedData[activeNews]

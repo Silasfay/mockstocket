@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://gwmccn4ulpt8"]
+[gd_scene load_steps=8 format=3 uid="uid://gwmccn4ulpt8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_3nfbt"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="3_6x0la"]
-[ext_resource type="PackedScene" path="res://scenes/news.tscn" id="4_nijoo"]
+[ext_resource type="PackedScene" uid="uid://csohpmt6yoqms" path="res://scenes/news.tscn" id="4_nijoo"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_sw4fl"]
 [ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
+[ext_resource type="PackedScene" uid="uid://drkl7cjdt0cut" path="res://scenes/stock_screen2.tscn" id="7_yfljs"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("newsBank", "stocks")]
 script = ExtResource("1_3ugpv")
+newsBank = NodePath("CanvasLayer/Trending/NewsBank")
+stocks = NodePath("Stocks")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -128,3 +131,17 @@ texture = ExtResource("5_sw4fl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
+
+[node name="Stocks" type="Node2D" parent="."]
+
+[node name="StockScreen" parent="Stocks" instance=ExtResource("7_yfljs")]
+position = Vector2(1560, 586)
+
+[node name="StockScreen2" parent="Stocks" instance=ExtResource("7_yfljs")]
+position = Vector2(895, 546)
+
+[node name="StockScreen3" parent="Stocks" instance=ExtResource("7_yfljs")]
+position = Vector2(1293, 292)
+
+[node name="StockScreen4" parent="Stocks" instance=ExtResource("7_yfljs")]
+position = Vector2(747, 277)

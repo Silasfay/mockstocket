@@ -1,78 +1,32 @@
 extends Node2D
 
-var playerScene = load("res://scenes/player.tscn")
-var stockScreenScene = load("res://scenes/stock_screen2.tscn")
-var Stock = load("res://Scripts/stock.gd")
-var Portf = load("res://scenes/portfolio.tscn")
+@export var newsBank : VBoxContainer
+@export var stocks : Node2D
 
-var stockHandler : StockHandler
+var newsNodes : Array = []
+var stockNodes : Array = []
+var activeNews : Array = []
 
-var stockScreens = []
-
-var StockScreenSize = Vector2(350,200)
-
-var StockScreenCountX = 2
-var StockScreenPadding = Vector2(5,5)
-
-var timer : float
-
-var STOCK_DATA = [
-	{
-		name = "Stock1",
-		initialPPS = 100,
-	},
-	{
-		name = "Stock2",
-		initialPPS = 100,
-	},
-	{
-		name = "Stock3",
-		initialPPS = 100,
-	},
-	{
-		name = "Stock4",
-		initialPPS = 100,
-	},
-]
-var STOCK_COUNT = STOCK_DATA.size()
-
-var stocks = []
+var stockChoices : Array = ["Aluminum", "Coal", "Copper", "Iron", "Jade", "Marble", "Niter", "Oil", "Stone", "Crabs", "Deer", "Fish", "Horses", "Sheep", "Coffee", "Rice", "Sugar", "Wheat"]
 
 func _ready():
-	var playerInstance = playerScene.instantiate()
-	add_child(playerInstance)
-
-	#playerInstance.portfolio = [] #TODO set these to zero
-
-	for stockId in STOCK_COUNT:
-		var stockData = STOCK_DATA[stockId]
-		stockData.stock_id = stockId
-		var stock = Stock.new(stockData.name,stockId)
-		stocks.append(stock)
-		
-		var stockScreen : StockScreen = stockScreenScene.instantiate()
-		
-		#stockScreen.setStock(stock)
-		#stockScreens.append(stockScreen)
-		
-		var xCoord = stockId%StockScreenCountX + 3
-		var yCoord = stockId/StockScreenCountX + 3
-		stockScreen.position = Vector2((StockScreenSize+StockScreenPadding)*Vector2(xCoord,yCoord))
-		add_child(stockScreen)
-		
-
-		
-		
-		
+	stockNodes = stocks.get_children()
+	newsNodes = newsBank.get_children()
 	
-		
-
-func _process(delta: float) -> void:
-	timer += delta
-	if timer > 0.2:
-		timer = 0
-		#for n in STOCK_COUNT:
-			#var value = stocks[n].process(delta)
-			#stockScreens[n].add_price_point(value)
-		
+	## TODO Prevent double stock impact on initialization
 	
+	for eachStock in stockNodes:
+		var name = stockChoices.pop_at(randi() % stockChoices.size())
+		eachStock.nameLabel.text = name
+		
+	for eachNews in newsNodes:
+		var news = randi_range(1,54)
+		while news in activeNews : news = randi_range(1,54)
+		eachNews.newsFlash(news)
+		var newsData = eachNews.newsFlash(news)
+		
+		for eachStock in stockNodes:
+			eachStock.newsBreak(newsData.Stock, newsData.Impact)
+		
+		activeNews.append(news)
+		
