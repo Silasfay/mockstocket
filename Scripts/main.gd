@@ -1,12 +1,11 @@
 extends Node2D
 
 var playerScene = load("res://scenes/player.tscn")
-var stockScreenScene = load("res://scenes/stock_screen.tscn")
+var stockScreenScene = load("res://scenes/stock_screen2.tscn")
 var Stock = load("res://Scripts/stock.gd")
 var Portf = load("res://scenes/portfolio.tscn")
 
 var stockHandler : StockHandler
-
 
 var stockScreens = []
 
@@ -14,6 +13,8 @@ var StockScreenSize = Vector2(350,200)
 
 var StockScreenCountX = 2
 var StockScreenPadding = Vector2(5,5)
+
+var timer : float
 
 var STOCK_DATA = [
 	{
@@ -51,8 +52,8 @@ func _ready():
 		
 		var stockScreen : StockScreen = stockScreenScene.instantiate()
 		
-		stockScreen.setStock(stock)
-		stockScreens.append(stockScreen)
+		#stockScreen.setStock(stock)
+		#stockScreens.append(stockScreen)
 		
 		var xCoord = stockId%StockScreenCountX + 3
 		var yCoord = stockId/StockScreenCountX + 3
@@ -67,8 +68,11 @@ func _ready():
 		
 
 func _process(delta: float) -> void:
-	for n in STOCK_COUNT:
-		var value = stocks[n].process(delta)
-		stockScreens[n].add_price_point(value)
+	timer += delta
+	if timer > 0.2:
+		timer = 0
+		#for n in STOCK_COUNT:
+			#var value = stocks[n].process(delta)
+			#stockScreens[n].add_price_point(value)
 		
-		
+	

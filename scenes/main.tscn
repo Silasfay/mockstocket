@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_3nfbt"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="3_6x0la"]
-[ext_resource type="PackedScene" uid="uid://86amhq7w72he" path="res://scenes/news.tscn" id="4_nijoo"]
+[ext_resource type="PackedScene" path="res://scenes/news.tscn" id="4_nijoo"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_sw4fl"]
 [ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
 
@@ -11,6 +11,7 @@
 script = ExtResource("1_3ugpv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
 [node name="Background" type="Control" parent="CanvasLayer"]
 layout_mode = 3

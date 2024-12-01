@@ -19,6 +19,5 @@ texture = ExtResource("2_fl6bq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 3)
 rotation = 2.35619
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_n2drn")
 debug_color = Color(0, 0.595, 0.7, 0.392157)

@@ -3,7 +3,7 @@ class_name Stock extends Node
 # Stock properties
 var price_per_share: float = 100.0
 var stock_name: String
-var Name_node = get_child(4)
+var Name_node = get_child(3)
 
 # Movement parameters
 var volatility: float = 5.0  # Random price change per second

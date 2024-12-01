@@ -1,4 +1,5 @@
-class_name StockScreen extends Area2D
+#class_name StockScreen 
+extends Area2D
 
 
 
@@ -34,7 +35,7 @@ func _ready() -> void:
 	assert(shape != null, "CollisionShape2D node not found")
 	assert(line != null, "Line2D node not found")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	get_child(4).text = str(floor(stock.price_per_share * 100)/100)
 
 func setStock(stock:Stock) -> void:
