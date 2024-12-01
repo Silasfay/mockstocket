@@ -18,7 +18,8 @@ var newsImpactEnable : bool = false
 var timer : float = 0.0
 
 func _ready():
-	set_modulate(Color(0.6,0.6,0.6,1))
+	#set_modulate(Color(0.6,0.6,0.6,1))
+	pass
 
 func _process(delta):
 	timer += delta

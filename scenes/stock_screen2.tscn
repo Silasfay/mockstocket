@@ -1,59 +1,75 @@
-[gd_scene load_steps=4 format=3 uid="uid://drkl7cjdt0cut"]
+[gd_scene load_steps=5 format=3 uid="uid://cppwulvdoog74"]
 
 [ext_resource type="Script" path="res://scenes/stock_screen_2.gd" id="1_74sqe"]
-[ext_resource type="Texture2D" uid="uid://c8jl5i1f5x868" path="res://Sprites/cc82665f-55ff-4ac0-882e-9796772028f2.jpg" id="2_gms3w"]
+[ext_resource type="Texture2D" uid="uid://c8q3eomc4d4ak" path="res://Sprites/grid_tile.png" id="2_pqefx"]
+[ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="2_vt87t"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtt0j"]
-size = Vector2(350, 200)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygrnh"]
+size = Vector2(346, 230)
 
 [node name="StockScreen" type="Area2D" node_paths=PackedStringArray("graph", "nameLabel", "priceLabel")]
 script = ExtResource("1_74sqe")
 graph = NodePath("Line2D")
-nameLabel = NodePath("Control/Name")
-priceLabel = NodePath("Control/Price")
-
-[node name="1" type="Sprite2D" parent="."]
-scale = Vector2(1.048, 0.525)
-texture = ExtResource("2_gms3w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vtt0j")
-
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2(-175, -125)
-points = PackedVector2Array(42, 114, 137, 162, 227, 77, 275, 155, 346, 71)
-width = 2.0
+nameLabel = NodePath("Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Name")
+priceLabel = NodePath("Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Price")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -177.0
-offset_top = -104.0
-offset_right = 175.0
-offset_bottom = 101.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_vt87t")
 
-[node name="Name" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 47.0
-grow_vertical = 0
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(326, 183)
+layout_mode = 2
+texture = ExtResource("2_pqefx")
+stretch_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
 text = "Name"
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Price" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -51.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "100.00 "
+[node name="VSeparator" type="VSeparator" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Price" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "$100.00"
+horizontal_alignment = 2
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(173, 115)
+shape = SubResource("RectangleShape2D_ygrnh")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-17, -25)
+points = PackedVector2Array(42, 114, 137, 162, 227, 77, 275, 155, 346, 71)
+width = 2.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

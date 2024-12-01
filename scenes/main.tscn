@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://csohpmt6yoqms" path="res://scenes/news.tscn" id="4_nijoo"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_sw4fl"]
 [ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
-[ext_resource type="PackedScene" uid="uid://drkl7cjdt0cut" path="res://scenes/stock_screen2.tscn" id="7_yfljs"]
+[ext_resource type="PackedScene" uid="uid://cppwulvdoog74" path="res://scenes/stock_screen2.tscn" id="7_yfljs"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("newsBank", "stocks")]
 script = ExtResource("1_3ugpv")
@@ -135,13 +135,13 @@ position = Vector2(960, 540)
 [node name="Stocks" type="Node2D" parent="."]
 
 [node name="StockScreen" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(1560, 586)
+position = Vector2(598, 354)
 
 [node name="StockScreen2" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(895, 546)
+position = Vector2(1089, 360)
 
 [node name="StockScreen3" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(1293, 292)
+position = Vector2(593, 662)
 
 [node name="StockScreen4" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(747, 277)
+position = Vector2(1071, 659)
