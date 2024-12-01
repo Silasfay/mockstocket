@@ -17,7 +17,7 @@ texture = ExtResource("2_yoq51")
 shape = SubResource("RectangleShape2D_vtt0j")
 
 [node name="Line2D" type="Line2D" parent="."]
-position = Vector2(-190, -130)
+position = Vector2(-175, -125)
 points = PackedVector2Array(42, 114, 137, 162, 227, 77, 275, 155, 346, 71)
 width = 2.0
 

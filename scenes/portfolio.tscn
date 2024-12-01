@@ -1,65 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://rei3tbt37j7l"]
+[gd_scene load_steps=2 format=3 uid="uid://rei3tbt37j7l"]
 
 [ext_resource type="Script" path="res://portfolio.gd" id="1_qjswi"]
-[ext_resource type="Texture2D" uid="uid://dteih8fdf277d" path="res://Sprites/Portwindow1.png" id="2_bke11"]
-[ext_resource type="LabelSettings" uid="uid://jc1xinffh684" path="res://scenes/portfolio.tres" id="3_dy7h6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rimr"]
-size = Vector2(717, 37)
-
-[sub_resource type="LabelSettings" id="LabelSettings_432l2"]
-line_spacing = 40.0
-font_size = 40
-
-[node name="Portfolio" type="Area2D"]
+[node name="Portfolio" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_qjswi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0rimr")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-modulate = Color(0.0141878, 1, 0.998626, 1)
-position = Vector2(6.5, 0.5)
-scale = Vector2(3, 0.4)
-texture = ExtResource("2_bke11")
-
-[node name="Stock2" type="Label" parent="."]
-offset_left = -173.0
-offset_top = -46.0
-offset_right = -104.0
-offset_bottom = 37.0
-text = "14"
-label_settings = ExtResource("3_dy7h6")
-
-[node name="Stock" type="Label" parent="."]
-offset_left = 35.0
-offset_top = -43.0
-offset_right = 104.0
-offset_bottom = 40.0
-text = "15
-"
-label_settings = ExtResource("3_dy7h6")
-
-[node name="Stock3" type="Label" parent="."]
-offset_left = -86.0
-offset_top = -44.0
-offset_right = 17.0
-offset_bottom = 39.0
-text = "153"
-label_settings = ExtResource("3_dy7h6")
-
-[node name="Stock4" type="Label" parent="."]
-offset_left = 124.0
-offset_top = -43.0
-offset_right = 193.0
-offset_bottom = 126.0
-text = "15"
-label_settings = ExtResource("3_dy7h6")
-
-[node name="Money" type="Label" parent="."]
-offset_left = -294.0
-offset_top = -29.0
-offset_right = -180.0
-offset_bottom = 26.0
-text = "10000"
-label_settings = SubResource("LabelSettings_432l2")
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "100"

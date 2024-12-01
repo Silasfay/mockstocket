@@ -1,53 +1,129 @@
-[gd_scene load_steps=4 format=3 uid="uid://gwmccn4ulpt8"]
+[gd_scene load_steps=7 format=3 uid="uid://gwmccn4ulpt8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
-[ext_resource type="PackedScene" uid="uid://rei3tbt37j7l" path="res://scenes/portfolio.tscn" id="2_b3m3k"]
-[ext_resource type="Texture2D" uid="uid://d2qqc4dtfxg22" path="res://Sprites/Background.png" id="2_xwf04"]
+[ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_3nfbt"]
+[ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="3_6x0la"]
+[ext_resource type="PackedScene" uid="uid://86amhq7w72he" path="res://scenes/news.tscn" id="4_nijoo"]
+[ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_sw4fl"]
+[ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3ugpv")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_xwf04")
+
+[node name="Wallpaper" type="TextureRect" parent="CanvasLayer/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3nfbt")
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 108.0
+offset_top = 108.0
+offset_right = 108.0
+offset_bottom = 108.0
+
+[node name="NewsWindow" type="NinePatchRect" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 346.0
+offset_bottom = 864.0
+texture = ExtResource("6_4g63f")
+patch_margin_left = 127
+patch_margin_top = 75
+patch_margin_right = 75
+patch_margin_bottom = 50
+
+[node name="NewsLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 11.0
+offset_right = 326.0
+offset_bottom = 57.0
+theme = ExtResource("3_6x0la")
+text = "Trending"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Trending" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 113.0
+offset_top = 172.0
+offset_right = 113.0
+offset_bottom = 172.0
+
+[node name="NewsBank" type="VBoxContainer" parent="CanvasLayer/Trending"]
+layout_mode = 0
+offset_right = 336.0
+offset_bottom = 779.0
+
+[node name="News" parent="CanvasLayer/Trending/NewsBank" instance=ExtResource("4_nijoo")]
+layout_mode = 2
+
+[node name="News2" parent="CanvasLayer/Trending/NewsBank" instance=ExtResource("4_nijoo")]
+layout_mode = 2
+
+[node name="News3" parent="CanvasLayer/Trending/NewsBank" instance=ExtResource("4_nijoo")]
+layout_mode = 2
+
+[node name="News4" parent="CanvasLayer/Trending/NewsBank" instance=ExtResource("4_nijoo")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 562.0
+offset_top = 108.0
+offset_right = 562.0
+offset_bottom = 108.0
+
+[node name="MainWindow" type="NinePatchRect" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_right = 1250.0
+offset_bottom = 864.0
+texture = ExtResource("6_4g63f")
+patch_margin_left = 127
+patch_margin_top = 75
+patch_margin_right = 75
+patch_margin_bottom = 50
+
+[node name="MainLabel" type="Label" parent="CanvasLayer/Control2"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 11.0
+offset_right = 1230.0
+offset_bottom = 57.0
+theme = ExtResource("3_6x0la")
+text = "Stonks"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Bottom" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1036.0
+offset_right = 40.0
+offset_bottom = 1076.0
+
+[node name="Taskbar" type="TextureRect" parent="CanvasLayer/Bottom"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 46.0
+texture = ExtResource("5_sw4fl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
-
-[node name="Portfolio" parent="." instance=ExtResource("2_b3m3k")]
-position = Vector2(933, 186)
-
-[node name="Portfolio2" parent="." instance=ExtResource("2_b3m3k")]
-position = Vector2(933, 246)
-
-[node name="Portfolio3" parent="." instance=ExtResource("2_b3m3k")]
-position = Vector2(933, 306)
-
-[node name="Portfolio4" parent="." instance=ExtResource("2_b3m3k")]
-position = Vector2(933, 366)
-
-[node name="NewsBank" type="VBoxContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 120.0
-offset_top = 165.0
-offset_right = 440.0
-offset_bottom = 945.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="."]
-offset_left = 363.0
-offset_top = 118.0
-offset_right = 427.0
-offset_bottom = 152.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-text = "News"
