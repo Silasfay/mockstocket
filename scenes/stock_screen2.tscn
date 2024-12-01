@@ -70,7 +70,6 @@ shape = SubResource("RectangleShape2D_ygrnh")
 position = Vector2(-17, -25)
 points = PackedVector2Array(42, 114, 137, 162, 227, 77, 275, 155, 346, 71)
 width = 2.0
-default_color = Color(0.217, 0.7, 0.217, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
