@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dhnu7rb454sn0" path="res://Sprites/Reblog.svg" id="3_l1jxi"]
 [ext_resource type="Texture2D" uid="uid://bb51mlp7g4duq" path="res://Sprites/Like.svg" id="4_wbqd3"]
 
-[node name="News" type="Control" node_paths=PackedStringArray("contentLabel")]
+[node name="News" type="Control" node_paths=PackedStringArray("contentLabel", "flasher")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_m11hh")
-contentLabel = NodePath("PanelContainer/HBoxContainer/MarginContainer/Label")
+contentLabel = NodePath("PanelContainer/HBoxContainer/MarginContainer/Content")
+flasher = NodePath("PanelContainer/Flasher")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(336, 0)
@@ -34,10 +35,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/MarginContainer"]
+[node name="Content" type="RichTextLabel" parent="PanelContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-autowrap_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+fit_content = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
 layout_mode = 2
@@ -48,6 +49,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
+size_flags_vertical = 0
 alignment = 1
 
 [node name="Comment" type="TextureRect" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
@@ -58,7 +60,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Reblog" type="TextureRect" parent="PanelContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(35, 35)
+custom_minimum_size = Vector2(35, 40)
 layout_mode = 2
 texture = ExtResource("3_l1jxi")
 expand_mode = 1
@@ -70,3 +72,7 @@ layout_mode = 2
 texture = ExtResource("4_wbqd3")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="Flasher" type="ColorRect" parent="PanelContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
