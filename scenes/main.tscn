@@ -1,17 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://gwmccn4ulpt8"]
+[gd_scene load_steps=14 format=3 uid="uid://gwmccn4ulpt8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
 [ext_resource type="PackedScene" uid="uid://ejc0b7cfwxpg" path="res://scenes/menu.tscn" id="2_1vpdo"]
 [ext_resource type="PackedScene" uid="uid://csmnlp00qr024" path="res://scenes/player.tscn" id="2_2i4xk"]
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_3nfbt"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="3_6x0la"]
-[ext_resource type="PackedScene" uid="uid://csohpmt6yoqms" path="res://scenes/news.tscn" id="4_nijoo"]
+[ext_resource type="PackedScene" uid="uid://86amhq7w72he" path="res://scenes/news.tscn" id="4_nijoo"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_sw4fl"]
 [ext_resource type="Script" path="res://Scripts/news_bank.gd" id="5_vp7pq"]
 [ext_resource type="Script" path="res://scenes/portfolio_manager.gd" id="6_3wq7l"]
 [ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
-[ext_resource type="PackedScene" uid="uid://cppwulvdoog74" path="res://scenes/stock_screen.tscn" id="7_yfljs"]
+[ext_resource type="PackedScene" path="res://scenes/stock_screen.tscn" id="7_yfljs"]
 [ext_resource type="PackedScene" uid="uid://rei3tbt37j7l" path="res://scenes/portfolio.tscn" id="9_sydqm"]
+[ext_resource type="PackedScene" uid="uid://c8g67288pao6a" path="res://scenes/boundaries.tscn" id="13_tfuow"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("newsBank", "stocks", "time", "portfolioManager")]
 script = ExtResource("1_3ugpv")
@@ -208,3 +209,5 @@ position = Vector2(593, 662)
 
 [node name="StockScreen4" parent="Stocks" instance=ExtResource("7_yfljs")]
 position = Vector2(1071, 659)
+
+[node name="Boundaries" parent="." instance=ExtResource("13_tfuow")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://duntxvqb6ilo4"]
+[gd_scene load_steps=8 format=3 uid="uid://duntxvqb6ilo4"]
 
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="1_k6ma0"]
 [ext_resource type="Script" path="res://scenes/tutrotial.gd" id="2_3nabj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="4_6afj6"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_1dlpp"]
 [ext_resource type="PackedScene" path="res://scenes/stock_screen.tscn" id="6_8igml"]
+[ext_resource type="PackedScene" uid="uid://c8g67288pao6a" path="res://scenes/boundaries.tscn" id="7_jsdkt"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -125,6 +126,8 @@ text = "Thats it! Now that you have that down, whoever has the most money
 
 [node name="StockScreen" parent="." instance=ExtResource("6_8igml")]
 position = Vector2(1335, 540)
+
+[node name="Boundaries" parent="." instance=ExtResource("7_jsdkt")]
 
 [connection signal="body_entered" from="StockScreen" to="." method="_on_stock_screen_body_entered"]
 [connection signal="body_exited" from="StockScreen" to="." method="_on_stock_screen_body_exited"]

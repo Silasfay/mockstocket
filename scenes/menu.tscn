@@ -5,8 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_r4j1i"]
 [ext_resource type="Texture2D" uid="uid://cgomrtinu1e1a" path="res://Sprites/Icon.svg" id="2_va6ae"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_lqju5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccfls"]
+[ext_resource type="PackedScene" uid="uid://c8g67288pao6a" path="res://scenes/boundaries.tscn" id="6_5tp53"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("StartingButton")]
 layout_mode = 3
@@ -113,29 +112,6 @@ offset_bottom = 33.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "AM"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(948, -89)
-scale = Vector2(131.058, 9.204)
-shape = SubResource("RectangleShape2D_ccfls")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-96, 698)
-rotation = -1.5708
-scale = Vector2(131.058, 9.204)
-shape = SubResource("RectangleShape2D_ccfls")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2010, 599)
-rotation = -1.5708
-scale = Vector2(131.058, 9.204)
-shape = SubResource("RectangleShape2D_ccfls")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(939, 1150)
-rotation = 3.14159
-scale = Vector2(131.058, 9.204)
-shape = SubResource("RectangleShape2D_ccfls")
+[node name="Boundaries" parent="." instance=ExtResource("6_5tp53")]
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
