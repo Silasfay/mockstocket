@@ -5,6 +5,8 @@ var speed := 500 #Pixels per second
 var hoveredStock = null
 var Portf 
 
+var pitch
+
 var portfolio = [
 	0,0,0,0
 ]
@@ -30,6 +32,9 @@ func _process(delta: float) -> void:
 	move_and_slide()
 	#position = (position+movement).clamp()
 	if Input.is_action_just_pressed("buy"):
+		pitch = randf_range(.99,1.1)
+		$AudioStreamPlayer.set_pitch_scale(pitch)
+		$AudioStreamPlayer.play(0)
 		if hoveredStock != null and currency > hoveredStock.get_price():
 			#print(str(currency))
 			#print(str(hoveredStock.get_price()))
@@ -42,6 +47,9 @@ func _process(delta: float) -> void:
 		else:
 			print("not hovering!")
 	if Input.is_action_just_pressed("sell"):
+		pitch = randf_range(.8,.98)
+		$AudioStreamPlayer.set_pitch_scale(pitch)
+		$AudioStreamPlayer.play(0)
 		if hoveredStock != null:
 			#print(str(currency))
 			#print(str(hoveredStock.get_price()))

@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ejc0b7cfwxpg"]
+[gd_scene load_steps=4 format=3 uid="uid://ejc0b7cfwxpg"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_feq21"]
+[ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="2_h3ejs"]
+[ext_resource type="Texture2D" uid="uid://cgomrtinu1e1a" path="res://icon.svg" id="2_va6ae"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" node_paths=PackedStringArray("StartingButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,19 +12,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_feq21")
+StartingButton = NodePath("HBoxContainer/VBoxContainer/StartButton")
 
-[node name="Button" type="Button" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 296.0
-offset_top = 49.0
-offset_right = 675.0
-offset_bottom = 245.0
-text = "HELLO"
+offset_left = 5.0
+offset_top = -2.0
+offset_right = 839.0
+offset_bottom = 801.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_h3ejs")
+text = "Start Trading"
+icon = ExtResource("2_va6ae")
+icon_alignment = 1
+vertical_icon_alignment = 0
 
 [node name="Button2" type="Button" parent="."]
+visible = false
 layout_mode = 0
-offset_left = 353.0
-offset_top = 314.0
-offset_right = 660.0
-offset_bottom = 472.0
+offset_left = 345.0
+offset_top = 549.0
+offset_right = 652.0
+offset_bottom = 707.0
 text = "GOODBYE"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
