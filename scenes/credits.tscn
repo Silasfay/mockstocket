@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bsggwxepuois1"]
+[gd_scene load_steps=11 format=3 uid="uid://bsggwxepuois1"]
 
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="1_ire56"]
 [ext_resource type="Texture2D" uid="uid://camxyo65kxrhb" path="res://Sprites/1f3ae.svg" id="2_emh26"]
@@ -8,6 +8,23 @@
 [ext_resource type="Texture2D" uid="uid://drviqhmhnm8wf" path="res://Sprites/1f5d2.svg" id="4_mh3us"]
 [ext_resource type="Texture2D" uid="uid://dlo06dbscn3dq" path="res://Sprites/1f5a5.svg" id="5_mpenm"]
 [ext_resource type="Texture2D" uid="uid://cjnyygax3v6d0" path="res://Sprites/1f0cf.svg" id="7_u6wpm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3hsp"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.607843)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_p5xnp"]
 color = Color(0, 0, 0, 0.607843)
@@ -25,6 +42,7 @@ theme = ExtResource("1_ire56")
 layout_mode = 0
 offset_right = 264.0
 offset_bottom = 426.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t3hsp")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 custom_minimum_size = Vector2(240, 426)

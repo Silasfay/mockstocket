@@ -1,27 +1,28 @@
-[gd_scene load_steps=14 format=3 uid="uid://gwmccn4ulpt8"]
+[gd_scene load_steps=15 format=3 uid="uid://gwmccn4ulpt8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
 [ext_resource type="PackedScene" uid="uid://ejc0b7cfwxpg" path="res://scenes/menu.tscn" id="2_1vpdo"]
 [ext_resource type="PackedScene" uid="uid://csmnlp00qr024" path="res://scenes/player.tscn" id="2_2i4xk"]
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_3nfbt"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="3_6x0la"]
-[ext_resource type="PackedScene" uid="uid://86amhq7w72he" path="res://scenes/news.tscn" id="4_nijoo"]
+[ext_resource type="PackedScene" uid="uid://csohpmt6yoqms" path="res://scenes/news.tscn" id="4_nijoo"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_sw4fl"]
 [ext_resource type="Script" path="res://Scripts/news_bank.gd" id="5_vp7pq"]
 [ext_resource type="Script" path="res://scenes/portfolio_manager.gd" id="6_3wq7l"]
 [ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
-[ext_resource type="PackedScene" path="res://scenes/stock_screen.tscn" id="7_yfljs"]
+[ext_resource type="PackedScene" uid="uid://cppwulvdoog74" path="res://scenes/stock_screen.tscn" id="7_yfljs"]
 [ext_resource type="PackedScene" uid="uid://rei3tbt37j7l" path="res://scenes/portfolio.tscn" id="9_sydqm"]
-[ext_resource type="PackedScene" uid="uid://c8g67288pao6a" path="res://scenes/boundaries.tscn" id="13_tfuow"]
+[ext_resource type="PackedScene" uid="uid://bsggwxepuois1" path="res://scenes/credits.tscn" id="12_v4knk"]
+[ext_resource type="PackedScene" path="res://scenes/boundaries.tscn" id="13_tfuow"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("newsBank", "stocks", "time", "portfolioManager")]
 script = ExtResource("1_3ugpv")
-newsBank = NodePath("CanvasLayer/NewsWindow/Trending/NewsBank")
+newsBank = NodePath("CanvasLayer/NewsWindow/NewsWindow2/Trending/NewsBank")
 playerNode = ExtResource("2_2i4xk")
 stocks = NodePath("Stocks")
 time = NodePath("CanvasLayer/Bottom/Time")
 mainMenu = ExtResource("2_1vpdo")
-portfolioManager = NodePath("CanvasLayer/MainWindow/PortfolioManager")
+portfolioManager = NodePath("CanvasLayer/Control/MainWindow/Container/PortfolioManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -43,8 +44,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_3nfbt")
 
-[node name="MainWindow" type="NinePatchRect" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainWindow" type="NinePatchRect" parent="CanvasLayer/Control"]
 clip_children = 2
+layout_mode = 0
 offset_left = 562.0
 offset_top = 108.0
 offset_right = 1812.0
@@ -55,40 +65,45 @@ patch_margin_top = 75
 patch_margin_right = 75
 patch_margin_bottom = 50
 
-[node name="PortfolioManager" type="HBoxContainer" parent="CanvasLayer/MainWindow"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 77.0
-offset_right = 1228.0
-offset_bottom = 77.0
-script = ExtResource("6_3wq7l")
-portfolioNode = ExtResource("9_sydqm")
-
-[node name="Portfolio" parent="CanvasLayer/MainWindow/PortfolioManager" instance=ExtResource("9_sydqm")]
-layout_mode = 2
-
-[node name="Portfolio2" parent="CanvasLayer/MainWindow/PortfolioManager" instance=ExtResource("9_sydqm")]
-layout_mode = 2
-
-[node name="Portfolio3" parent="CanvasLayer/MainWindow/PortfolioManager" instance=ExtResource("9_sydqm")]
-layout_mode = 2
-
-[node name="Portfolio4" parent="CanvasLayer/MainWindow/PortfolioManager" instance=ExtResource("9_sydqm")]
-layout_mode = 2
-
-[node name="MainLabel" type="Label" parent="CanvasLayer/MainWindow"]
+[node name="MainLabel" type="Label" parent="CanvasLayer/Control/MainWindow"]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 11.0
 offset_right = 1230.0
 offset_bottom = 57.0
 theme = ExtResource("3_6x0la")
+theme_override_font_sizes/font_size = 28
 text = "Stonks"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Container" type="MarginContainer" parent="CanvasLayer/Control/MainWindow"]
+layout_mode = 0
+offset_right = 1250.0
+offset_bottom = 864.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PortfolioManager" type="HBoxContainer" parent="CanvasLayer/Control/MainWindow/Container"]
+layout_mode = 2
+script = ExtResource("6_3wq7l")
+portfolioNode = ExtResource("9_sydqm")
+
+[node name="Portfolio" parent="CanvasLayer/Control/MainWindow/Container/PortfolioManager" instance=ExtResource("9_sydqm")]
+layout_mode = 2
+
+[node name="Portfolio2" parent="CanvasLayer/Control/MainWindow/Container/PortfolioManager" instance=ExtResource("9_sydqm")]
+layout_mode = 2
+
+[node name="Portfolio3" parent="CanvasLayer/Control/MainWindow/Container/PortfolioManager" instance=ExtResource("9_sydqm")]
+layout_mode = 2
+
+[node name="Portfolio4" parent="CanvasLayer/Control/MainWindow/Container/PortfolioManager" instance=ExtResource("9_sydqm")]
+layout_mode = 2
+
 [node name="NewsWindow" type="NinePatchRect" parent="CanvasLayer"]
-clip_children = 2
 offset_left = 108.0
 offset_top = 108.0
 offset_right = 454.0
@@ -99,14 +114,24 @@ patch_margin_top = 75
 patch_margin_right = 75
 patch_margin_bottom = 50
 
-[node name="Trending" type="Control" parent="CanvasLayer/NewsWindow"]
-anchors_preset = 0
-offset_left = 3.0
-offset_top = 62.0
-offset_right = 343.0
-offset_bottom = 5062.0
+[node name="NewsWindow2" type="NinePatchRect" parent="CanvasLayer/NewsWindow"]
+clip_children = 1
+offset_left = 5.0
+offset_right = 341.0
+offset_bottom = 860.0
+texture = ExtResource("6_4g63f")
+patch_margin_left = 127
+patch_margin_top = 75
+patch_margin_right = 75
+patch_margin_bottom = 50
 
-[node name="NewsBank" type="VBoxContainer" parent="CanvasLayer/NewsWindow/Trending" node_paths=PackedStringArray("mainNode")]
+[node name="Trending" type="Control" parent="CanvasLayer/NewsWindow/NewsWindow2"]
+anchors_preset = 0
+offset_top = 64.0
+offset_right = 336.0
+offset_bottom = 5064.0
+
+[node name="NewsBank" type="VBoxContainer" parent="CanvasLayer/NewsWindow/NewsWindow2/Trending" node_paths=PackedStringArray("mainNode")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,16 +139,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_vp7pq")
-mainNode = NodePath("../../../..")
+mainNode = NodePath("../../../../..")
 newsNode = ExtResource("4_nijoo")
 
-[node name="News" parent="CanvasLayer/NewsWindow/Trending/NewsBank" instance=ExtResource("4_nijoo")]
+[node name="News" parent="CanvasLayer/NewsWindow/NewsWindow2/Trending/NewsBank" instance=ExtResource("4_nijoo")]
 layout_mode = 2
 
-[node name="News2" parent="CanvasLayer/NewsWindow/Trending/NewsBank" instance=ExtResource("4_nijoo")]
+[node name="News2" parent="CanvasLayer/NewsWindow/NewsWindow2/Trending/NewsBank" instance=ExtResource("4_nijoo")]
 layout_mode = 2
 
-[node name="News3" parent="CanvasLayer/NewsWindow/Trending/NewsBank" instance=ExtResource("4_nijoo")]
+[node name="News3" parent="CanvasLayer/NewsWindow/NewsWindow2/Trending/NewsBank" instance=ExtResource("4_nijoo")]
 layout_mode = 2
 
 [node name="NewsLabel" type="Label" parent="CanvasLayer/NewsWindow"]
@@ -133,6 +158,7 @@ offset_top = 11.0
 offset_right = 326.0
 offset_bottom = 57.0
 theme = ExtResource("3_6x0la")
+theme_override_font_sizes/font_size = 28
 text = "Trending"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -144,6 +170,18 @@ offset_top = 1036.0
 offset_right = 40.0
 offset_bottom = 1076.0
 theme = ExtResource("3_6x0la")
+
+[node name="Credits" parent="CanvasLayer/Bottom" instance=ExtResource("12_v4knk")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1.0
+offset_top = -380.0
+offset_right = 1.0
+offset_bottom = -380.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Taskbar" type="TextureRect" parent="CanvasLayer/Bottom"]
 layout_mode = 0
@@ -198,16 +236,22 @@ text = "AM"
 
 [node name="Stocks" type="Node2D" parent="."]
 
-[node name="StockScreen" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(598, 354)
+[node name="StockScreen1" parent="Stocks" instance=ExtResource("7_yfljs")]
+position = Vector2(623, 412)
 
 [node name="StockScreen2" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(1089, 360)
+position = Vector2(1015, 412)
 
 [node name="StockScreen3" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(593, 662)
+position = Vector2(1406, 408)
 
 [node name="StockScreen4" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(1071, 659)
+position = Vector2(623, 713)
+
+[node name="StockScreen5" parent="Stocks" instance=ExtResource("7_yfljs")]
+position = Vector2(1015, 713)
+
+[node name="StockScreen6" parent="Stocks" instance=ExtResource("7_yfljs")]
+position = Vector2(1406, 713)
 
 [node name="Boundaries" parent="." instance=ExtResource("13_tfuow")]

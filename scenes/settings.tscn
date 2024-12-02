@@ -37,5 +37,13 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = 241.0
 offset_top = 159.0
-offset_right = 536.0
+offset_right = 600.0
 offset_bottom = 459.0
+
+[node name="BGM" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="SFX" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Sound Effects"
