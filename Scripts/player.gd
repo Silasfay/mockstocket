@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 @export var speed := 1000 #Pixels per second
 @export var device : int
-@export var panelNode : PanelContainer
+@export var playerNumNode : Label
 
 var portfolioNode : Portfolio
 var playerColor : Color
@@ -22,7 +22,7 @@ var currency = 2000
 
 func _ready() -> void:
 	if playerColor : self.modulate = playerColor
-	#if playerNumber : panelNode.get_node("Label").text = str(playerNumber)
+	if playerNumber : playerNumNode.text = str(playerNumber)
 	Portf = get_node("/root/Main/Portfolio")
 
 

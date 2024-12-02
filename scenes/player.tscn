@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://csmnlp00qr024"]
+[gd_scene load_steps=7 format=3 uid="uid://csmnlp00qr024"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_iupgk"]
 [ext_resource type="Texture2D" uid="uid://bphs0pel71ck6" path="res://Hand.svg" id="2_fl6bq"]
@@ -9,13 +9,15 @@
 radius = 10.6066
 height = 41.0122
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("panelNode")]
+[sub_resource type="LabelSettings" id="LabelSettings_j51h0"]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("playerNumNode")]
 script = ExtResource("1_iupgk")
 device = -1
-panelNode = NodePath("")
+playerNumNode = NodePath("Label")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.72549)
+self_modulate = Color(1, 1, 1, 0.862745)
 position = Vector2(56, 38)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_fl6bq")
@@ -38,5 +40,6 @@ rotation = -0.785398
 theme = ExtResource("4_a5esw")
 theme_override_font_sizes/font_size = 16
 text = "1"
+label_settings = SubResource("LabelSettings_j51h0")
 horizontal_alignment = 1
 vertical_alignment = 1
