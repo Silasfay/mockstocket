@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsggwxepuois1"]
+[gd_scene load_steps=10 format=3 uid="uid://bsggwxepuois1"]
 
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="1_ire56"]
+[ext_resource type="Texture2D" uid="uid://camxyo65kxrhb" path="res://Sprites/1f3ae.svg" id="2_emh26"]
+[ext_resource type="Texture2D" uid="uid://db6gbq40a82f2" path="res://Sprites/1f3a8.svg" id="3_m73rl"]
+[ext_resource type="Texture2D" uid="uid://cm1dpjeu61s2r" path="res://Sprites/1f9ee.svg" id="3_rstr0"]
+[ext_resource type="Texture2D" uid="uid://cwif6rti3d674" path="res://Sprites/2699.svg" id="4_c5kan"]
+[ext_resource type="Texture2D" uid="uid://drviqhmhnm8wf" path="res://Sprites/1f5d2.svg" id="4_mh3us"]
+[ext_resource type="Texture2D" uid="uid://dlo06dbscn3dq" path="res://Sprites/1f5a5.svg" id="5_mpenm"]
+[ext_resource type="Texture2D" uid="uid://cjnyygax3v6d0" path="res://Sprites/1f0cf.svg" id="7_u6wpm"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_p5xnp"]
+color = Color(0, 0, 0, 0.607843)
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -11,40 +21,122 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ire56")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 240.0
+offset_right = 264.0
 offset_bottom = 426.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(240, 426)
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="GDC" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Brought to you by the Ohlone Game Development Club"
+theme_override_constants/separation = 10
 
-[node name="OBS" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "for the Ohlone Business Society"
+texture = ExtResource("2_emh26")
 
-[node name="Silas" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="GDC" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Ohlone Game Dev Club"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_rstr0")
+
+[node name="OBS" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Ohlone Business Society"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_p5xnp")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("4_mh3us")
+
+[node name="Silas" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
 text = "capnxstabn
 "
 
-[node name="Evan" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("5_mpenm")
+
+[node name="Evan" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
 text = "redevan"
 
-[node name="Jessie" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+texture = ExtResource("3_m73rl")
+
+[node name="Jessie" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
 text = "Zaccea"
 
-[node name="Liyen" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer6" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+texture = ExtResource("7_u6wpm")
+
+[node name="Liyen" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
 text = "Meoah"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_p5xnp")
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+texture = ExtResource("4_c5kan")
+
+[node name="Settings" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Settings"
