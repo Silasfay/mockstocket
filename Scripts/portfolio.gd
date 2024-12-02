@@ -35,10 +35,14 @@ func buyStock(cost : float, stock : String):
 		else:
 			ownedStock[stock] = 1
 		updateOwnedStock()
-		
+		return true
+	else: return false
+	
 func sellStock(cost : float, stock : String):
 	if ownedStock.has(stock):
 		funds += cost
 		ownedStock[stock] -= 1
 		updateOwnedStock()
+		return true
+	else : return false
 		

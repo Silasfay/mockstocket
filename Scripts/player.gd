@@ -29,20 +29,16 @@ func _process(delta):
 		if holdBuyTimer > 1:
 			holdBuyTimer = 0.8
 			if hoveredStock:
-				pitch = randf_range(.99,1.1)
-				$AudioStreamPlayer.set_pitch_scale(pitch)
-				$AudioStreamPlayer.play(0)
-				portfolioNode.buyStock(hoveredStock.value, hoveredStock.nameLabel.text)
+				if portfolioNode.buyStock(hoveredStock.value, hoveredStock.nameLabel.text):
+					playSFX(randf_range(0.99,1.1))
 				
 	if holdSellTimer > 0 and MultiplayerInput.is_action_pressed(device,"sell"):
 		holdSellTimer += delta
 		if holdSellTimer > 1:
 			holdSellTimer = 0.8
 			if hoveredStock:
-				pitch = randf_range(.99,1.1)
-				$AudioStreamPlayer.set_pitch_scale(pitch)
-				$AudioStreamPlayer.play(0)
-				portfolioNode.sellStock(hoveredStock.value, hoveredStock.nameLabel.text)
+				if portfolioNode.sellStock(hoveredStock.value, hoveredStock.nameLabel.text):
+					playSFX(randf_range(0.8,0.98))
 	
 	## Resets hold timer if no input detected.
 	if !MultiplayerInput.is_action_pressed(device,"sell") and !MultiplayerInput.is_action_pressed(device,"buy"):
@@ -51,17 +47,17 @@ func _process(delta):
 	
 	## Buy or sell inputs. Does not allow both to be done at once.
 	if MultiplayerInput.is_action_just_pressed(device,"buy") and !MultiplayerInput.is_action_pressed(device,"sell"):
-		pitch = randf_range(.99,1.1)
-		$AudioStreamPlayer.set_pitch_scale(pitch)
-		$AudioStreamPlayer.play(0)
 		holdBuyTimer += delta
 		if hoveredStock:
-			portfolioNode.buyStock(hoveredStock.value, hoveredStock.nameLabel.text)
+			if portfolioNode.buyStock(hoveredStock.value, hoveredStock.nameLabel.text):
+				playSFX(randf_range(0.99,1.1))
 		
 	if MultiplayerInput.is_action_just_pressed(device,"sell") and !MultiplayerInput.is_action_pressed(device,"buy"):
-		pitch = randf_range(.8,.98)
-		$AudioStreamPlayer.set_pitch_scale(pitch)
-		$AudioStreamPlayer.play(0)
 		holdSellTimer += delta
 		if hoveredStock:
-			portfolioNode.sellStock(hoveredStock.value, hoveredStock.nameLabel.text)
+			if portfolioNode.sellStock(hoveredStock.value, hoveredStock.nameLabel.text):
+				playSFX(randf_range(0.8,0.98))
+
+func playSFX(pitch : float):
+	$AudioStreamPlayer.set_pitch_scale(pitch)
+	$AudioStreamPlayer.play(0)
