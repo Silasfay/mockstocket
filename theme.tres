@@ -5,12 +5,7 @@
 [ext_resource type="FontFile" uid="uid://d2esy0mfcscne" path="res://Fonts/PTSerif-BoldItalic.ttf" id="3_vhdug"]
 [ext_resource type="FontFile" uid="uid://7k20r3ale1b1" path="res://Fonts/PTSerif-Italic.ttf" id="4_7j08o"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_05qj4"]
-content_margin_left = 4.0
-content_margin_top = 0.0
-content_margin_right = 4.0
-content_margin_bottom = 0.0
-color = Color(0.5, 0.5, 0.5, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1ifn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3yp3l"]
 
@@ -1854,13 +1849,7 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_qagfn"]
-content_margin_left = 0.0
-content_margin_top = 4.0
-content_margin_right = 0.0
-content_margin_bottom = 4.0
-color = Color(0, 0, 0, 0)
-vertical = true
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvf1k"]
 
 [resource]
 Button/fonts/font = ExtResource("1_oe5pu")
@@ -1870,7 +1859,7 @@ CodeEdit/fonts/font = ExtResource("1_oe5pu")
 ColorPickerButton/fonts/font = ExtResource("1_oe5pu")
 GraphNodeTitleLabel/fonts/font = ExtResource("1_oe5pu")
 HSeparator/constants/separation = 4
-HSeparator/styles/separator = SubResource("StyleBoxLine_05qj4")
+HSeparator/styles/separator = SubResource("StyleBoxEmpty_o1ifn")
 ItemList/fonts/font = ExtResource("1_oe5pu")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/colors/font_outline_color = Color(1, 1, 1, 1)
@@ -1935,5 +1924,5 @@ TooltipLabel/fonts/font = ExtResource("1_oe5pu")
 Tree/fonts/font = ExtResource("1_oe5pu")
 Tree/fonts/title_button_font = ExtResource("1_oe5pu")
 VSeparator/constants/separation = 4
-VSeparator/styles/separator = SubResource("StyleBoxLine_qagfn")
+VSeparator/styles/separator = SubResource("StyleBoxEmpty_lvf1k")
 Window/fonts/title_font = ExtResource("1_oe5pu")

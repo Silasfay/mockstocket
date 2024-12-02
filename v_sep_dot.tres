@@ -1,0 +1,9 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dx3i7rc7si0cp"]
+
+[ext_resource type="Texture2D" uid="uid://c8q3eomc4d4ak" path="res://Sprites/grid_tile.png" id="1_el38c"]
+
+[resource]
+texture = ExtResource("1_el38c")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(25, 1, 1, 26)
