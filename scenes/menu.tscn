@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_r4j1i"]
 [ext_resource type="Texture2D" uid="uid://cgomrtinu1e1a" path="res://Sprites/Icon.svg" id="2_va6ae"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_lqju5"]
-[ext_resource type="PackedScene" uid="uid://c8g67288pao6a" path="res://scenes/boundaries.tscn" id="6_5tp53"]
+[ext_resource type="PackedScene" uid="uid://nojrtbdyp8jb" path="res://scenes/boundaries.tscn" id="6_5tp53"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("StartingButton")]
 layout_mode = 3

@@ -13,6 +13,8 @@ var pitch
 var holdBuyTimer : float
 var holdSellTimer : float
 
+var hoveredButton : String
+
 func _ready():
 	if playerColor : self.modulate = playerColor
 	if playerNumber : playerNumNode.text = str(playerNumber)
@@ -57,6 +59,11 @@ func _process(delta):
 		if hoveredStock:
 			if portfolioNode.sellStock(hoveredStock.value, hoveredStock.nameLabel.text):
 				playSFX(randf_range(0.8,0.98))
+				
+	## Settings Button Handler
+	if hoveredButton == "Settings":
+		if MultiplayerInput.is_action_pressed(device,"sell") or MultiplayerInput.is_action_pressed(device,"buy"):
+			pass ##lol
 
 func playSFX(pitch : float):
 	$AudioStreamPlayer.set_pitch_scale(pitch)
