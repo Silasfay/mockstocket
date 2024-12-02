@@ -25,6 +25,7 @@ func checkControllers():
 			newPlayer.position = Vector2(randf_range(600,1700), randf_range(200,950))
 			newPlayer.playerColor = playerColor
 			newPlayer.playerNumber = each+1
+			players.append(newPlayer)
 			portfolioManager.activePlayers.append(newPlayer)
 			add_child(newPlayer)
 	if !connectedControllers:
@@ -34,6 +35,7 @@ func checkControllers():
 		newPlayer.position = Vector2(randf_range(600,1700), randf_range(200,950))
 		newPlayer.playerColor = playerColor
 		newPlayer.playerNumber = 1
+		players.append(newPlayer)
 		portfolioManager.activePlayers.append(newPlayer)
 		add_child(newPlayer)
 
@@ -79,3 +81,6 @@ func _process(delta):
 func gameEnds():
 	get_tree().paused = true
 	#do stuff
+	# the array "players" contains the nodes of the active players.
+	for each : Player in players:
+		var score = each.portfolioNode.funds
