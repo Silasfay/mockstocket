@@ -1,6 +1,8 @@
 class_name Player extends CharacterBody2D
 
-var speed := 500 #Pixels per second
+@export var speed := 500 #Pixels per second
+@export var device :int
+
 
 var hoveredStock = null
 var Portf 
@@ -12,13 +14,7 @@ var portfolio = [
 ]
 var currency = 2000
 
-func setHoverignStock(stock:Stock) -> void:
-	if stock is Stock:
-		print(stock.stock_id)
-	elif stock == null:
-		print(-1)
-		
-	hoveredStock = stock
+
 
 
 func _ready() -> void:
@@ -27,11 +23,11 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var movementDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var movementDirection = MultiplayerInput.get_vector(device,"up", "right", "left", "down")
 	velocity = movementDirection * speed
 	move_and_slide()
 	#position = (position+movement).clamp()
-	if Input.is_action_just_pressed("buy"):
+	if MultiplayerInput.is_action_just_pressed(device,"buy"):
 		pitch = randf_range(.99,1.1)
 		$AudioStreamPlayer.set_pitch_scale(pitch)
 		$AudioStreamPlayer.play(0)
@@ -46,7 +42,7 @@ func _process(delta: float) -> void:
 			#print(str(portfolio[hoveredStock.stock_id]))
 		else:
 			print("not hovering!")
-	if Input.is_action_just_pressed("sell"):
+	if MultiplayerInput.is_action_just_pressed(device,"sell"):
 		pitch = randf_range(.8,.98)
 		$AudioStreamPlayer.set_pitch_scale(pitch)
 		$AudioStreamPlayer.play(0)
