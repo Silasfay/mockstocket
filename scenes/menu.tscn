@@ -69,6 +69,7 @@ offset_bottom = 46.0
 texture = ExtResource("5_lqju5")
 
 [node name="Time" type="Label" parent="Bottom"]
+layout_mode = 0
 offset_left = 1791.0
 offset_top = 10.0
 offset_right = 1919.0
