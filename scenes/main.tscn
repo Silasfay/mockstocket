@@ -72,7 +72,7 @@ offset_right = 1230.0
 offset_bottom = 57.0
 theme = ExtResource("3_6x0la")
 theme_override_font_sizes/font_size = 28
-text = "Stonks"
+text = "Portfolio and Stocks"
 horizontal_alignment = 2
 vertical_alignment = 1
 
