@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cppwulvdoog74"]
 
-[ext_resource type="Script" path="res://scenes/stock_screen_2.gd" id="1_74sqe"]
+[ext_resource type="Script" path="res://Scripts/stock_screen.gd" id="1_74sqe"]
 [ext_resource type="Texture2D" uid="uid://c8q3eomc4d4ak" path="res://Sprites/grid_tile.png" id="2_pqefx"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="2_vt87t"]
 

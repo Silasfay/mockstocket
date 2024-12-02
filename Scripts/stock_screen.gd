@@ -1,112 +1,108 @@
-#class_name StockScreen 
 extends Area2D
+class_name StockScreen
 
+@export var value : float = 100.0
+@export var volatility : float = 0.25
+@export var updateTimer : float = 0.5
 
+## News Impact Variables
+var newsImpact : float = 0.0
+var newsImpactTarget : float = 0.0
+var newsImpactTimer : float = 0.0
+var newsImpactEnable : bool = false
 
-# Constants for graph dimensions and styling
-const MARGIN_PERCENT: float = 0.3  # 30% margin on top and bottom
-const GRAPH_WIDTH: int = 350
-const GRAPH_HEIGHT: int = 200
-const MAX_HISTORY_AGE: float = 5.0  # Maximum age of data points in seconds
-const MIN_POINTS_TO_KEEP: int = 2  # Minimum number of points to keep for drawing
+@export var highlight : ColorRect
+@export var graph : Line2D
+@export var nameLabel : Label
+@export var priceLabel : Label
 
+var timer : float = 0.0
 
+var priceHistory : Array
+var savedDiffValue : float = 0.0
 
-# History tracking
-class PricePoint:
-	var price: float
-	var timestamp: float
+func _ready():
+	graph.clear_points()
+	set_process(false)
+
+func start():
+	## Simulates 33 ticks of history to prep the graph.
+	for i in range(33):
+		var valueChange = randf_range(-0.1,0.1) * volatility * updateTimer * value
+		value += valueChange
+		priceHistory.append(value)
+	updateValue(updateTimer)
+	set_process(true)
+
+func _process(delta):
+	timer += delta
+	if newsImpactEnable : newsHandler(delta)
+	if timer > updateTimer:
+		updateValue(timer)
+		updateGraph()
+		timer = 0
+
+func updateGraph():
+	## Updates the line graph based off past price history.
+	# x-limits : 30, 350 (Increment by 10)
+	# y-limits : 30, 220 (Higher number is down)
+	var minValue : float = priceHistory.min()
+	var maxValue : float = priceHistory.max()
+	var diffValue = maxValue - minValue
 	
-	func _init(p: float, t: float) -> void:
-		price = p
-		timestamp = t
-
-# Node references
-@onready var shape: CollisionShape2D = $CollisionShape2D
-@onready var line: Line2D = $Line2D
-
-var price_history: Array[PricePoint] = []
-var all_time_high: float = -INF
-var all_time_low: float = INF
-var stock: Stock = null
-
-func _ready() -> void:
-	# Ensure required nodes exist
-	assert(shape != null, "CollisionShape2D node not found")
-	assert(line != null, "Line2D node not found")
-
-func _process(_delta: float) -> void:
-	get_child(4).text = str(floor(stock.price_per_share * 100)/100)
-
-func setStock(stock:Stock) -> void:
-	self.stock = stock
-	get_child(3).text = stock.stock_name
-
-func add_price_point(price: float) -> void:
-	var current_time = Time.get_ticks_msec() / 1000.0
-	price_history.append(PricePoint.new(price, current_time))
+	if diffValue != savedDiffValue:
+		graph.clear_points()
+		for i in range(33):
+			var y = ((abs(((priceHistory[i] - minValue) / diffValue) - 1)) * 190) + 30
+			graph.add_point(Vector2(30+(i*10), y))
+	else:
+		graph.remove_point(0)
+		var y = ((abs(((priceHistory[32] - minValue) / diffValue) - 1)) * 190) + 30
+		graph.add_point(Vector2(350, y))
 	
-	# Update all-time values
-	all_time_high = max(all_time_high, price)
-	all_time_low = min(all_time_low, price)
+func newsBreak(name : String, target : float):
+	if name != nameLabel.text : return
 	
-	cleanup_history()
-	update_graph()
+	if newsImpactEnable == true : newsImpactTarget += target
+	else : newsImpactTarget = target
+	newsImpactEnable = true
+	newsImpactTimer = 0.0
 
-func cleanup_history() -> void:
-	var current_time = Time.get_ticks_msec() / 1000.0
+func newsHandler(delta : float):
+	## Spikes to the target impact within 10 seconds, then gradually resets to 0 impact after 30 total seconds. This is using a cubic bezier method.
+	## TODO Edgecase of interrupted new ticker
+	var impact = Vector2(0,0)
+	var impactLeftPull = Vector2(-5,newsImpactTarget*2)
+	var impactTarget = Vector2(5,newsImpactTarget*0.5)
+	var impactTargetEnd = Vector2(10,0)
 	
-
-	while price_history.size() > MIN_POINTS_TO_KEEP:
-		var oldest_point = price_history[0]
-		if current_time - oldest_point.timestamp > MAX_HISTORY_AGE:
-			price_history.pop_front()
-			recalculate_all_time_values()
-		else:
-			break
-
-func recalculate_all_time_values() -> void:
-	for point in price_history:
-		all_time_high = max(all_time_high, point.price)
-		all_time_low = min(all_time_low, point.price)
-
-
-
-func update_graph() -> void:
-	if price_history.size() < 2:
-		return
-		
-	var value_range = all_time_high - all_time_low
+	var leftMidpoint = impact.lerp(impactLeftPull, newsImpactTimer/30)
+	var topMidpoint = impactLeftPull.lerp(impactTarget, newsImpactTimer/30)
+	var rightMidpoint = impactTarget.lerp(impactTargetEnd, newsImpactTimer/30)
 	
-	var margin = value_range * MARGIN_PERCENT
-	var scaled_min = all_time_low - margin
-	var scaled_max = all_time_high + margin
-	var scaled_range = scaled_max - scaled_min
+	var secondLeftMidpoint = leftMidpoint.lerp(topMidpoint, newsImpactTimer/30)
+	var secondRightMidpoint = topMidpoint.lerp(rightMidpoint, newsImpactTimer/30)
 	
-	var current_time = Time.get_ticks_msec() / 1000.0
-	var oldest_time = price_history[0].timestamp
-	var time_range = current_time - oldest_time
+	newsImpact = secondLeftMidpoint.lerp(secondRightMidpoint, newsImpactTimer/30).y
+	newsImpactTimer += delta
+	if newsImpactTimer > 30.0 : newsImpactEnable = false
+
+func updateValue(timeSinceUpdate):
+	var valueChange = randf_range(-0.1,0.1) * volatility * timeSinceUpdate * value
+	if abs(newsImpact) > 1 : valueChange += abs(valueChange) * newsImpact
+	value += valueChange
+	priceHistory.pop_front()
+	priceHistory.append(value)
 	
+	if value < 0.01 : value = 0.01
+	if priceLabel : priceLabel.text = "$" + str(value).pad_decimals(2)
 
-	while line.get_point_count() > price_history.size():
-		line.remove_point(line.get_point_count() - 1)
-	while line.get_point_count() < price_history.size():
-		line.add_point(Vector2.ZERO)
-	
-
-	for i in price_history.size():
-		var point = price_history[i]
-		var x = ((point.timestamp - oldest_time) / time_range) * GRAPH_WIDTH
-		var normalized_y = (point.price - scaled_min) / scaled_range
-		var y = GRAPH_HEIGHT * (1.0 - normalized_y)  # Invert Y axis
-		line.set_point_position(i, Vector2(x, y))
-
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body):
 	if body is Player:
-		body.setHoverignStock(self.stock)
+		print(body)
+		highlight.set_modulate(Color(1,1,1,0.4))
 
-
-func _on_body_exited(body: Node2D) -> void:
+func _on_body_exited(body):
 	if body is Player:
-		if body.hoveredStock == self.stock:
-			body.setHoverignStock(null)
+		print(body)
+		highlight.set_modulate(Color(0.6,0.6,0.6,0))
