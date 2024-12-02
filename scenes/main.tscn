@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://gwmccn4ulpt8"]
+[gd_scene load_steps=10 format=3 uid="uid://gwmccn4ulpt8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
+[ext_resource type="PackedScene" uid="uid://ejc0b7cfwxpg" path="res://scenes/menu.tscn" id="2_1vpdo"]
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_3nfbt"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="3_6x0la"]
 [ext_resource type="PackedScene" uid="uid://csohpmt6yoqms" path="res://scenes/news.tscn" id="4_nijoo"]
@@ -9,10 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
 [ext_resource type="PackedScene" uid="uid://cppwulvdoog74" path="res://scenes/stock_screen.tscn" id="7_yfljs"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("newsBank", "stocks")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("newsBank", "stocks", "time")]
 script = ExtResource("1_3ugpv")
 newsBank = NodePath("CanvasLayer/Control/NewsWindow/Trending/NewsBank")
 stocks = NodePath("Stocks")
+time = NodePath("CanvasLayer/Bottom/Time")
+mainMenu = ExtResource("2_1vpdo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -133,8 +136,43 @@ offset_right = 1920.0
 offset_bottom = 46.0
 texture = ExtResource("5_sw4fl")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(960, 540)
+[node name="Time" type="Label" parent="CanvasLayer/Bottom"]
+layout_mode = 0
+offset_left = 1804.0
+offset_top = 14.0
+offset_right = 1907.0
+offset_bottom = 40.0
+
+[node name="Hours" type="Label" parent="CanvasLayer/Bottom/Time"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 1.0
+offset_right = 76.0
+offset_bottom = 24.0
+text = "09"
+
+[node name="Colon" type="Label" parent="CanvasLayer/Bottom/Time"]
+layout_mode = 0
+offset_left = 56.0
+offset_right = 96.0
+offset_bottom = 23.0
+text = ":"
+
+[node name="Minutes" type="Label" parent="CanvasLayer/Bottom/Time"]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 1.0
+offset_right = 101.0
+offset_bottom = 24.0
+text = "30"
+
+[node name="AMPM" type="Label" parent="CanvasLayer/Bottom/Time"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 1.0
+offset_right = 121.0
+offset_bottom = 24.0
+text = "AM"
 
 [node name="Stocks" type="Node2D" parent="."]
 
