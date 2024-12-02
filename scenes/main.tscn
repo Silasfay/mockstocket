@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gwmccn4ulpt8"]
+[gd_scene load_steps=10 format=3 uid="uid://gwmccn4ulpt8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
 [ext_resource type="PackedScene" uid="uid://ejc0b7cfwxpg" path="res://scenes/menu.tscn" id="2_1vpdo"]
@@ -9,12 +9,10 @@
 [ext_resource type="Script" path="res://Scripts/news_bank.gd" id="5_vp7pq"]
 [ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
 [ext_resource type="PackedScene" uid="uid://cppwulvdoog74" path="res://scenes/stock_screen.tscn" id="7_yfljs"]
-[ext_resource type="PackedScene" uid="uid://csmnlp00qr024" path="res://scenes/player.tscn" id="9_ntpxy"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("newsBank", "stocks", "time")]
 script = ExtResource("1_3ugpv")
 newsBank = NodePath("CanvasLayer/Control/NewsWindow/Trending/NewsBank")
-playerNode = ExtResource("9_ntpxy")
 stocks = NodePath("Stocks")
 time = NodePath("CanvasLayer/Bottom/Time")
 mainMenu = ExtResource("2_1vpdo")
