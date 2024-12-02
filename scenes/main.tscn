@@ -141,15 +141,27 @@ position = Vector2(960, 540)
 
 [node name="StockScreen" parent="Stocks" instance=ExtResource("7_yfljs")]
 position = Vector2(598, 354)
+value = 100.0
+volatility = 0.25
+updateTimer = 0.5
 
 [node name="StockScreen2" parent="Stocks" instance=ExtResource("7_yfljs")]
 position = Vector2(1089, 360)
+value = 100.0
+volatility = 0.25
+updateTimer = 0.5
 
 [node name="StockScreen3" parent="Stocks" instance=ExtResource("7_yfljs")]
 position = Vector2(593, 662)
+value = 100.0
+volatility = 0.25
+updateTimer = 0.5
 
 [node name="StockScreen4" parent="Stocks" instance=ExtResource("7_yfljs")]
 position = Vector2(1071, 659)
+value = 100.0
+volatility = 0.25
+updateTimer = 0.5
 
 [node name="Player" parent="." instance=ExtResource("9_ntpxy")]
 position = Vector2(1318, 261)

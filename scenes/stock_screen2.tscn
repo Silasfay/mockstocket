@@ -69,7 +69,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Line2D" type="Line2D" parent="Control/PanelContainer"]
 position = Vector2(-17, -25)
-points = PackedVector2Array(42, 114, 137, 162, 227, 77, 275, 155, 346, 71)
+points = PackedVector2Array(30, 110, 54, 220, 86, 80, 119, 155, 152, 71, 190, 109, 218, 30, 254, 100, 283, 95, 303, 177, 350, 72)
 width = 2.0
 default_color = Color(0.184314, 0.184314, 0.74902, 1)
 

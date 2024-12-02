@@ -17,6 +17,7 @@ func _ready():
 		eachStock.volatility = randf_range(0.05, 0.25)
 		eachStock.nameLabel.text = name
 		eachStock.value = randf_range(100.0,500.0)
+		eachStock.start()
 
 func impactStocks(stock : String, impact : int):
 	for eachStock in stockNodes:
