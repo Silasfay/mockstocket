@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=3 uid="uid://duntxvqb6ilo4"]
+
+[ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="1_k6ma0"]
+[ext_resource type="Script" path="res://scenes/tutrotial.gd" id="2_3nabj"]
+[ext_resource type="PackedScene" uid="uid://gwmccn4ulpt8" path="res://scenes/main.tscn" id="3_7rqwk"]
+[ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="4_6afj6"]
+[ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_1dlpp"]
+[ext_resource type="PackedScene" path="res://scenes/stock_screen.tscn" id="6_8igml"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k6ma0")
+script = ExtResource("2_3nabj")
+mainmenu = ExtResource("3_7rqwk")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wallpaper" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_6afj6")
+
+[node name="Bottom" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1036.0
+offset_right = 40.0
+offset_bottom = 1076.0
+theme = ExtResource("1_k6ma0")
+
+[node name="Taskbar" type="TextureRect" parent="Bottom"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 46.0
+texture = ExtResource("5_1dlpp")
+
+[node name="Time" type="Label" parent="Bottom"]
+layout_mode = 0
+offset_left = 1791.0
+offset_top = 10.0
+offset_right = 1919.0
+offset_bottom = 44.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hours" type="Label" parent="Bottom/Time"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 1.0
+offset_right = 53.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "09"
+
+[node name="Colon" type="Label" parent="Bottom/Time"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 1.0
+offset_right = 79.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = ":"
+
+[node name="Minutes" type="Label" parent="Bottom/Time"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 1.0
+offset_right = 86.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "30"
+
+[node name="AMPM" type="Label" parent="Bottom/Time"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 1.0
+offset_right = 117.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "AM"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Welcome to Mock Stocket! The game rules are very simple."
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Use your controller stick to move your cursor onto a Stock!"
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Press your \"A\" button to Buy! and your \"B\" button to sell"
+
+[node name="Label4" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Thats it! Now that you have that down, whoever has the most money
+ at the end of market day wins!"
+
+[node name="StockScreen" parent="." instance=ExtResource("6_8igml")]
+position = Vector2(1335, 540)
+
+[connection signal="body_entered" from="StockScreen" to="." method="_on_stock_screen_body_entered"]
+[connection signal="body_exited" from="StockScreen" to="." method="_on_stock_screen_body_exited"]
