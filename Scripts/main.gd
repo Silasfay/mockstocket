@@ -1,21 +1,39 @@
 extends Node2D
 
 @export var newsBank : VBoxContainer
+@export var playerNode : PackedScene
 @export var stocks : Node2D
 @export var time : Label
 @export var mainMenu : PackedScene
 
 var newsNodes : Array = []
 var stockNodes : Array = []
+var players : Array = []
 
 var stockChoices : Array = ["Aluminum", "Coal", "Copper", "Iron", "Jade", "Marble", "Niter", "Oil", "Stone", "Crabs", "Deer", "Fish", "Horses", "Sheep", "Coffee", "Rice", "Sugar", "Wheat"]
 
 var timeElaped : float = 0.0
 
+func checkControllers():
+	var connectedControllers = Input.get_connected_joypads()
+	if connectedControllers:
+		for each in connectedControllers:
+			var newPlayer : Player = playerNode.instantiate()
+			newPlayer.device = each
+			newPlayer.position = Vector2(randf_range(600,1700), randf_range(200,950))
+			add_child(newPlayer)
+	if !connectedControllers:
+		var newPlayer : Player = playerNode.instantiate()
+		newPlayer.device = -1
+		newPlayer.position = Vector2(randf_range(600,1700), randf_range(200,950))
+		add_child(newPlayer)
+
 func _ready():
-	stockNodes = stocks.get_children()
+	## Check if controllers are set. If there are controllers, spawn a player for each connected controller. If not, spawn only one for keyboard input.
+	checkControllers()
 	
 	## Initializes each stock to random unique stock, random volitility and a value between $100 and $500
+	stockNodes = stocks.get_children()
 	for eachStock in stockNodes:
 		var name = stockChoices.pop_at(randi() % stockChoices.size())
 		eachStock.volatility = randf_range(0.05, 0.25)
@@ -33,7 +51,7 @@ func _process(delta):
 	
 	## Handles clock. Initializes at 9:30AM. Time moves at x130 speed, to ensure game ends in 3 minutes, displaying 4:00PM. (Total 6Hours 30Minutes ingame)
 	timeElaped += delta
-	var convertedTime = 34200 + (timeElaped * 1130)
+	var convertedTime = 34200 + (timeElaped * 130)
 	
 	@warning_ignore("narrowing_conversion")
 	var hour = fmod(floor(convertedTime/3600),12)
@@ -45,7 +63,6 @@ func _process(delta):
 	time.get_node("Minutes").text = "%02d" % minutes
 	
 	if convertedTime > 43200 : time.get_node("AMPM").text = "PM"
-	print(convertedTime)
 	
 	if convertedTime > 57600 : gameEnds()
 
