@@ -1,9 +1,12 @@
 class_name Player extends CharacterBody2D
 
-@export var speed := 500 #Pixels per second
+@export var speed := 1000 #Pixels per second
 @export var device : int
+@export var panelNode : PanelContainer
 
-
+var portfolioNode : Portfolio
+var playerColor : Color
+var playerNumber : int
 var hoveredStock = null
 var Portf 
 
@@ -18,6 +21,8 @@ var currency = 2000
 
 
 func _ready() -> void:
+	if playerColor : self.modulate = playerColor
+	#if playerNumber : panelNode.get_node("Label").text = str(playerNumber)
 	Portf = get_node("/root/Main/Portfolio")
 
 

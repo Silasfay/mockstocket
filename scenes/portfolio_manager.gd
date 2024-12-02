@@ -12,4 +12,5 @@ func start():
 	for each in activePlayers:
 		var newPortfolio : Portfolio = portfolioNode.instantiate()
 		newPortfolio.playerNode = each
+		each.portfolioNode = newPortfolio
 		add_child(newPortfolio)

@@ -1,20 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://csmnlp00qr024"]
+[gd_scene load_steps=6 format=3 uid="uid://csmnlp00qr024"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_iupgk"]
 [ext_resource type="Texture2D" uid="uid://bphs0pel71ck6" path="res://Hand.svg" id="2_fl6bq"]
 [ext_resource type="AudioStream" uid="uid://bxrprh4tgtr1x" path="res://Audio/CLICK.wav" id="3_xjqkd"]
+[ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="4_a5esw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n2drn"]
 radius = 10.6066
 height = 41.0122
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("panelNode")]
 script = ExtResource("1_iupgk")
-speed = 1000
 device = -1
+panelNode = NodePath("Panel")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 10
+self_modulate = Color(1, 1, 1, 0.72549)
 position = Vector2(56, 38)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_fl6bq")
@@ -27,3 +28,16 @@ debug_color = Color(0, 0.595, 0.7, 0.392157)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xjqkd")
+
+[node name="Panel" type="PanelContainer" parent="."]
+visible = false
+offset_left = 59.0
+offset_top = 25.0
+offset_right = 91.0
+offset_bottom = 57.0
+theme = ExtResource("4_a5esw")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1

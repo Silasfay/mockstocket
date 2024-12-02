@@ -20,14 +20,20 @@ func checkControllers():
 	if connectedControllers:
 		for each in connectedControllers:
 			var newPlayer : Player = playerNode.instantiate()
+			var playerColor = Color(randf_range(0,1),randf_range(0,1),randf_range(0,1),1)
 			newPlayer.device = each
 			newPlayer.position = Vector2(randf_range(600,1700), randf_range(200,950))
+			newPlayer.playerColor = playerColor
+			newPlayer.playerNumber = each+1
 			portfolioManager.activePlayers.append(newPlayer)
 			add_child(newPlayer)
 	if !connectedControllers:
 		var newPlayer : Player = playerNode.instantiate()
+		var playerColor = Color(randf_range(0,1),randf_range(0,1),randf_range(0,1),1)
 		newPlayer.device = -1
 		newPlayer.position = Vector2(randf_range(600,1700), randf_range(200,950))
+		newPlayer.playerColor = playerColor
+		newPlayer.playerNumber = 1
 		portfolioManager.activePlayers.append(newPlayer)
 		add_child(newPlayer)
 

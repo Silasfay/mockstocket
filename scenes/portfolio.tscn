@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="1_gosv2"]
 [ext_resource type="Script" path="res://portfolio.gd" id="1_qjswi"]
 
-[node name="Portfolio" type="Control"]
+[node name="Portfolio" type="Control" node_paths=PackedStringArray("playerName", "funds", "ownedStock")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -13,6 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_gosv2")
 script = ExtResource("1_qjswi")
+playerName = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/PlayerName")
+funds = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer/Funds")
+ownedStock = NodePath("Panel/MarginContainer/HBoxContainer/VBoxContainer2/RichTextLabel")
 
 [node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 2
