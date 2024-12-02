@@ -168,22 +168,22 @@ vertical_alignment = 1
 [node name="Stocks" type="Node2D" parent="."]
 
 [node name="StockScreen1" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(623, 412)
+position = Vector2(623, 440)
 
 [node name="StockScreen2" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(1015, 412)
+position = Vector2(1015, 440)
 
 [node name="StockScreen3" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(1406, 408)
+position = Vector2(1406, 440)
 
 [node name="StockScreen4" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(623, 713)
+position = Vector2(623, 701)
 
 [node name="StockScreen5" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(1015, 713)
+position = Vector2(1015, 701)
 
 [node name="StockScreen6" parent="Stocks" instance=ExtResource("7_yfljs")]
-position = Vector2(1406, 713)
+position = Vector2(1406, 701)
 
 [node name="Boundaries" parent="." instance=ExtResource("13_tfuow")]
 
