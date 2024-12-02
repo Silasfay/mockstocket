@@ -2,8 +2,8 @@ extends Area2D
 class_name StockScreen
 
 @export var value : float = 100.0
-@export var volatility : float = 1.0
-@export var updateTimer : float = 0.2
+@export var volatility : float = 0.25
+@export var updateTimer : float = 0.5
 
 ## News Impact Variables
 var newsImpact : float = 0.0
@@ -11,6 +11,7 @@ var newsImpactTarget : float = 0.0
 var newsImpactTimer : float = 0.0
 var newsImpactEnable : bool = false
 
+@export var highlight : ColorRect
 @export var graph : Line2D
 @export var nameLabel : Label
 @export var priceLabel : Label
@@ -18,8 +19,7 @@ var newsImpactEnable : bool = false
 var timer : float = 0.0
 
 func _ready():
-	#set_modulate(Color(0.6,0.6,0.6,1))
-	pass
+	newsBreak("Name", 5)
 
 func _process(delta):
 	timer += delta
@@ -37,23 +37,23 @@ func newsBreak(name : String, target : float):
 	newsImpactTimer = 0.0
 
 func newsHandler(delta : float):
-	## Spikes to the target impact within 3 seconds, then gradually resets to 0 impact after 10 total seconds. This is using a cubic bezier method.
+	## Spikes to the target impact within 10 seconds, then gradually resets to 0 impact after 30 total seconds. This is using a cubic bezier method.
 	## TODO Edgecase of interrupted new ticker
 	var impact = Vector2(0,0)
 	var impactLeftPull = Vector2(-5,newsImpactTarget*2)
 	var impactTarget = Vector2(5,newsImpactTarget*0.5)
 	var impactTargetEnd = Vector2(10,0)
 	
-	var leftMidpoint = impact.lerp(impactLeftPull, newsImpactTimer/10)
-	var topMidpoint = impactLeftPull.lerp(impactTarget, newsImpactTimer/10)
-	var rightMidpoint = impactTarget.lerp(impactTargetEnd, newsImpactTimer/10)
+	var leftMidpoint = impact.lerp(impactLeftPull, newsImpactTimer/30)
+	var topMidpoint = impactLeftPull.lerp(impactTarget, newsImpactTimer/30)
+	var rightMidpoint = impactTarget.lerp(impactTargetEnd, newsImpactTimer/30)
 	
-	var secondLeftMidpoint = leftMidpoint.lerp(topMidpoint, newsImpactTimer/10)
-	var secondRightMidpoint = topMidpoint.lerp(rightMidpoint, newsImpactTimer/10)
+	var secondLeftMidpoint = leftMidpoint.lerp(topMidpoint, newsImpactTimer/30)
+	var secondRightMidpoint = topMidpoint.lerp(rightMidpoint, newsImpactTimer/30)
 	
-	newsImpact = secondLeftMidpoint.lerp(secondRightMidpoint, newsImpactTimer/10).y
+	newsImpact = secondLeftMidpoint.lerp(secondRightMidpoint, newsImpactTimer/30).y
 	newsImpactTimer += delta
-	if newsImpactTimer > 10.0 : newsImpactEnable = false
+	if newsImpactTimer > 30.0 : newsImpactEnable = false
 
 func update_value(timeSinceUpdate):
 	var valueChange = randf_range(-0.1,0.1) * volatility * timeSinceUpdate * value
@@ -66,9 +66,9 @@ func update_value(timeSinceUpdate):
 func _on_body_entered(body):
 	if body is Player:
 		print(body)
-		set_modulate(Color(1,1,1,1))
+		highlight.set_modulate(Color(1,1,1,0.4))
 
 func _on_body_exited(body):
 	if body is Player:
 		print(body)
-		set_modulate(Color(0.6,0.6,0.6,1))
+		highlight.set_modulate(Color(0.6,0.6,0.6,0))

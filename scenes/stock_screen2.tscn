@@ -7,9 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygrnh"]
 size = Vector2(346, 230)
 
-[node name="StockScreen" type="Area2D" node_paths=PackedStringArray("graph", "nameLabel", "priceLabel")]
+[node name="StockScreen" type="Area2D" node_paths=PackedStringArray("highlight", "graph", "nameLabel", "priceLabel")]
 script = ExtResource("1_74sqe")
-graph = NodePath("Line2D")
+highlight = NodePath("Control/PanelContainer/Highlight")
+graph = NodePath("Control/PanelContainer/Line2D")
 nameLabel = NodePath("Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Name")
 priceLabel = NodePath("Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Price")
 
@@ -24,6 +25,10 @@ theme = ExtResource("2_vt87t")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Highlight" type="ColorRect" parent="Control/PanelContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
 layout_mode = 2
@@ -62,14 +67,15 @@ horizontal_alignment = 2
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(173, 115)
-shape = SubResource("RectangleShape2D_ygrnh")
-
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="Control/PanelContainer"]
 position = Vector2(-17, -25)
 points = PackedVector2Array(42, 114, 137, 162, 227, 77, 275, 155, 346, 71)
 width = 2.0
+default_color = Color(0.184314, 0.184314, 0.74902, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(173, 115)
+shape = SubResource("RectangleShape2D_ygrnh")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
