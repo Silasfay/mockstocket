@@ -1,12 +1,6 @@
 extends VBoxContainer
 
 var newsFeedData = {
-	00: {
-		"Category" : "",
-		"Content" : "",
-		"Stock" : "Initial",
-		"Impact" : 0
-	},
 	01: {
 		"Category" : "Resources",
 		"Content" : "Global demand for electric vehicles increases sharply, driving up the need for lightweight aluminum components.",
@@ -333,11 +327,55 @@ var newsFeedData = {
 	}
 }
 
-# Called when the node enters the scene tree for the first time.
+@export var mainNode : Node2D
+@export var newsNode : PackedScene
+var timer : float = 0.0
+var timeToNext : float = 3.0
+var validData : Array
+
 func _ready():
-	pass # Replace with function body.
+	## Clears placeholder children.
+	for each in get_children() : each.queue_free()
+	
+	## Sets the array of valid news data to pick from, then sets first news.
+	for each in newsFeedData:
+		validData.append(each)
+	setNews()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	timer += delta
+	if timer > timeToNext : 
+		timer = 0.0
+		setNews()
+		
+		# Sets next news timer randomly, weighted based on number of current active news.
+		timeToNext = randf_range(2,3) * get_child_count()
+
+func setNews():
+	## Picks a random news from the pool and checks if it has a duplicate stock impact. Rerolls if so.
+	## TODO: What if we run out??
+	var activeTypes : Array
+	var pickNews : int
+	# Checks duplicate type; also failsafe if no posts.
+	if get_child_count() > 0:
+		for each in get_children():
+			activeTypes.append(each.activeNewsType)
+	# Rolls for news
+	if validData.size(): 
+		pickNews = randi_range(1, validData.size())
+	# Compares rolled news to active news; rerolls if duplicate.
+	while newsFeedData[validData[pickNews-1]].Stock in activeTypes:
+		if validData.size:
+			print("Rerolled, ", newsFeedData[validData[pickNews-1]])
+			pickNews = randi_range(1, validData.size())
+	
+	## Once picked news is confirmed, sets news to news scene, removes from pool and adds to children. Sends impact information to main.
+	var confirmedNews = newsFeedData[validData[pickNews-1]]
+	validData.pop_at(pickNews-1)
+	print(confirmedNews)
+	var newsScene : News = newsNode.instantiate()
+	newsScene.activeNewsContent = confirmedNews.Content
+	newsScene.activeNewsType = confirmedNews.Stock
+	if mainNode : mainNode.impactStocks(confirmedNews.Stock, confirmedNews.Impact)
+	add_child(newsScene)
+	move_child(newsScene,0)

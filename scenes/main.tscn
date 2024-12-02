@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://gwmccn4ulpt8"]
+[gd_scene load_steps=10 format=3 uid="uid://gwmccn4ulpt8"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3ugpv"]
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_3nfbt"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/news_bank.gd" id="5_vp7pq"]
 [ext_resource type="Texture2D" uid="uid://c3ijkjmdhv4b8" path="res://Sprites/Window.svg" id="6_4g63f"]
 [ext_resource type="PackedScene" uid="uid://cppwulvdoog74" path="res://scenes/stock_screen2.tscn" id="7_yfljs"]
+[ext_resource type="PackedScene" uid="uid://csmnlp00qr024" path="res://scenes/player.tscn" id="9_ntpxy"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("newsBank", "stocks")]
 script = ExtResource("1_3ugpv")
@@ -43,7 +44,7 @@ offset_right = 108.0
 offset_bottom = 108.0
 
 [node name="NewsWindow" type="NinePatchRect" parent="CanvasLayer/Control"]
-clip_contents = true
+clip_children = 2
 layout_mode = 0
 offset_right = 346.0
 offset_bottom = 864.0
@@ -54,33 +55,31 @@ patch_margin_right = 75
 patch_margin_bottom = 50
 
 [node name="Trending" type="Control" parent="CanvasLayer/Control/NewsWindow"]
-layout_mode = 3
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 64.0
-offset_right = 340.0
-offset_bottom = 864.0
+offset_left = 3.0
+offset_top = 62.0
+offset_right = 343.0
+offset_bottom = 5062.0
 
-[node name="NewsBank" type="VBoxContainer" parent="CanvasLayer/Control/NewsWindow/Trending"]
-layout_mode = 2
-offset_bottom = 8.0
+[node name="NewsBank" type="VBoxContainer" parent="CanvasLayer/Control/NewsWindow/Trending" node_paths=PackedStringArray("mainNode")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_vp7pq")
+mainNode = NodePath("../../../../..")
+newsNode = ExtResource("4_nijoo")
 
 [node name="News" parent="CanvasLayer/Control/NewsWindow/Trending/NewsBank" instance=ExtResource("4_nijoo")]
 layout_mode = 2
 
 [node name="News2" parent="CanvasLayer/Control/NewsWindow/Trending/NewsBank" instance=ExtResource("4_nijoo")]
-custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 
 [node name="News3" parent="CanvasLayer/Control/NewsWindow/Trending/NewsBank" instance=ExtResource("4_nijoo")]
 layout_mode = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/NewsWindow/Trending"]
-clip_contents = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="NewsLabel" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 0
@@ -151,3 +150,6 @@ position = Vector2(593, 662)
 
 [node name="StockScreen4" parent="Stocks" instance=ExtResource("7_yfljs")]
 position = Vector2(1071, 659)
+
+[node name="Player" parent="." instance=ExtResource("9_ntpxy")]
+position = Vector2(1318, 261)
