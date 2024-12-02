@@ -45,9 +45,9 @@ func _ready():
 	## Initializes each stock to random unique stock, random volitility and a value between $100 and $500
 	stockNodes = stocks.get_children()
 	for eachStock in stockNodes:
-		var name = stockChoices.pop_at(randi() % stockChoices.size())
+		var playerName = stockChoices.pop_at(randi() % stockChoices.size())
 		eachStock.volatility = randf_range(0.05, 0.25)
-		eachStock.nameLabel.text = name
+		eachStock.nameLabel.text = playerName
 		eachStock.value = randf_range(100.0,500.0)
 		eachStock.start()
 
