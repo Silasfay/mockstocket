@@ -6,8 +6,8 @@
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="4_a5esw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n2drn"]
-radius = 10.6066
-height = 41.0122
+radius = 8.48528
+height = 26.8701
 
 [sub_resource type="LabelSettings" id="LabelSettings_j51h0"]
 
@@ -23,7 +23,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_fl6bq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3, 3)
 rotation = 2.35619
 shape = SubResource("CapsuleShape2D_n2drn")
 debug_color = Color(0, 0.595, 0.7, 0.392157)

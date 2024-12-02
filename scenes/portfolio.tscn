@@ -13,7 +13,7 @@ vertical = true
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_tt7va"]
 color = Color(0.47451, 0.47451, 0.47451, 0.392157)
 
-[node name="Portfolio" type="Control" node_paths=PackedStringArray("playerName", "funds", "ownedStock")]
+[node name="Portfolio" type="Control" node_paths=PackedStringArray("playerName", "fundsLabel", "ownedStockLabel")]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -24,8 +24,8 @@ grow_vertical = 2
 theme = ExtResource("1_gosv2")
 script = ExtResource("1_qjswi")
 playerName = NodePath("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/PlayerName")
-funds = NodePath("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Funds")
-ownedStock = NodePath("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/RichTextLabel")
+fundsLabel = NodePath("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Funds")
+ownedStockLabel = NodePath("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/RichTextLabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2

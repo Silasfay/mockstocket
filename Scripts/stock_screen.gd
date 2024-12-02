@@ -60,8 +60,8 @@ func updateGraph():
 		var y = ((abs(((priceHistory[32] - minValue) / diffValue) - 1)) * 190) + 30
 		graph.add_point(Vector2(350, y))
 	
-func newsBreak(name : String, target : float):
-	if name != nameLabel.text : return
+func newsBreak(stockName : String, target : float):
+	if stockName != nameLabel.text : return
 	
 	if newsImpactEnable == true : newsImpactTarget += target
 	else : newsImpactTarget = target
@@ -99,10 +99,10 @@ func updateValue(timeSinceUpdate):
 
 func _on_body_entered(body):
 	if body is Player:
-		print(body)
+		body.hoveredStock = self
 		highlight.set_modulate(Color(1,1,1,0.4))
 
 func _on_body_exited(body):
 	if body is Player:
-		print(body)
+		body.hoveredStock = null
 		highlight.set_modulate(Color(0.6,0.6,0.6,0))

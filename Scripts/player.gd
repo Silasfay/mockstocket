@@ -1,65 +1,67 @@
 class_name Player extends CharacterBody2D
 
-@export var speed := 1000 #Pixels per second
+@export var speed : float = 1000
 @export var device : int
 @export var playerNumNode : Label
 
+var hoveredStock : StockScreen
 var portfolioNode : Portfolio
 var playerColor : Color
 var playerNumber : int
-var hoveredStock = null
-var Portf 
 
 var pitch
+var holdBuyTimer : float
+var holdSellTimer : float
 
-var portfolio = [
-	0,0,0,0
-]
-var currency = 2000
-
-
-
-
-func _ready() -> void:
+func _ready():
 	if playerColor : self.modulate = playerColor
 	if playerNumber : playerNumNode.text = str(playerNumber)
-	Portf = get_node("/root/Main/Portfolio")
 
-
-
-func _process(delta: float) -> void:
+func _process(delta):
+	## Movement
+	var movementDirection = MultiplayerInput.get_vector(device,"left", "right", "up", "down")
+	velocity = movementDirection.normalized() * speed
+	move_and_slide()
 	
-		var movementDirection = MultiplayerInput.get_vector(device,"left", "right", "up", "down")
-		velocity = movementDirection * speed
-		move_and_slide()
-		#position = (position+movement).clamp()
-		if MultiplayerInput.is_action_just_pressed(device,"buy"):
-			pitch = randf_range(.99,1.1)
-			$AudioStreamPlayer.set_pitch_scale(pitch)
-			$AudioStreamPlayer.play(0)
-			if hoveredStock != null and currency > hoveredStock.get_price():
-				#print(str(currency))
-				#print(str(hoveredStock.get_price()))
-				#Portfolio[] #TODO fix portfolio to enable buying
-				currency -= snapped(hoveredStock.get_price(),.01)
-				#print(str(currency))
-				portfolio[hoveredStock.stock_id] += 1
-				Portf.update_port_buy(hoveredStock.stock_id,portfolio[hoveredStock.stock_id], currency)
-				#print(str(portfolio[hoveredStock.stock_id]))
-			else:
-				print("not hovering!")
-		if MultiplayerInput.is_action_just_pressed(device,"sell"):
-			pitch = randf_range(.8,.98)
-			$AudioStreamPlayer.set_pitch_scale(pitch)
-			$AudioStreamPlayer.play(0)
-			if hoveredStock != null:
-				#print(str(currency))
-				#print(str(hoveredStock.get_price()))
-				#Portfolio[] #TODO fix portfolio to enable selling
-				currency += snapped(hoveredStock.get_price(), .01)
-				#print(str(currency))
-				portfolio[hoveredStock.stock_id] -= 1
-				Portf.update_port_buy(hoveredStock.stock_id,portfolio[hoveredStock.stock_id], currency)
-				#print(str(portfolio[hoveredStock.stock_id]))
-			else:
-				print("not hovering!")
+	## Checks to see if button is held. If so, repeat buy or sell 5 times a second. Does not allow both to be done at once.
+	if holdBuyTimer > 0 and MultiplayerInput.is_action_pressed(device,"buy"):
+		holdBuyTimer += delta
+		if holdBuyTimer > 1:
+			holdBuyTimer = 0.8
+			if hoveredStock:
+				pitch = randf_range(.99,1.1)
+				$AudioStreamPlayer.set_pitch_scale(pitch)
+				$AudioStreamPlayer.play(0)
+				portfolioNode.buyStock(hoveredStock.value, hoveredStock.nameLabel.text)
+				
+	if holdSellTimer > 0 and MultiplayerInput.is_action_pressed(device,"sell"):
+		holdSellTimer += delta
+		if holdSellTimer > 1:
+			holdSellTimer = 0.8
+			if hoveredStock:
+				pitch = randf_range(.99,1.1)
+				$AudioStreamPlayer.set_pitch_scale(pitch)
+				$AudioStreamPlayer.play(0)
+				portfolioNode.sellStock(hoveredStock.value, hoveredStock.nameLabel.text)
+	
+	## Resets hold timer if no input detected.
+	if !MultiplayerInput.is_action_pressed(device,"sell") and !MultiplayerInput.is_action_pressed(device,"buy"):
+		holdBuyTimer = 0
+		holdSellTimer = 0
+	
+	## Buy or sell inputs. Does not allow both to be done at once.
+	if MultiplayerInput.is_action_just_pressed(device,"buy") and !MultiplayerInput.is_action_pressed(device,"sell"):
+		pitch = randf_range(.99,1.1)
+		$AudioStreamPlayer.set_pitch_scale(pitch)
+		$AudioStreamPlayer.play(0)
+		holdBuyTimer += delta
+		if hoveredStock:
+			portfolioNode.buyStock(hoveredStock.value, hoveredStock.nameLabel.text)
+		
+	if MultiplayerInput.is_action_just_pressed(device,"sell") and !MultiplayerInput.is_action_pressed(device,"buy"):
+		pitch = randf_range(.8,.98)
+		$AudioStreamPlayer.set_pitch_scale(pitch)
+		$AudioStreamPlayer.play(0)
+		holdSellTimer += delta
+		if hoveredStock:
+			portfolioNode.sellStock(hoveredStock.value, hoveredStock.nameLabel.text)

@@ -474,13 +474,11 @@ func setNews():
 	# Compares rolled news to active news; rerolls if duplicate.
 	while newsFeedData[validData[pickNews-1]].Stock in activeTypes:
 		if validData.size:
-			print("Rerolled, ", newsFeedData[validData[pickNews-1]])
 			pickNews = randi_range(1, validData.size())
 	
 	## Once picked news is confirmed, sets news to news scene, removes from pool and adds to children. Sends impact information to main.
 	var confirmedNews = newsFeedData[validData[pickNews-1]]
 	validData.pop_at(pickNews-1)
-	print(confirmedNews)
 	var newsScene : News = newsNode.instantiate()
 	newsScene.activeNewsContent = confirmedNews.Content
 	newsScene.activeNewsType = confirmedNews.Stock
