@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://rei3tbt37j7l"]
 
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="1_gosv2"]
-[ext_resource type="Script" path="res://portfolio.gd" id="1_qjswi"]
+[ext_resource type="Script" path="res://Scripts/portfolio.gd" id="1_qjswi"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_m3re3"]
 color = Color(0.47451, 0.47451, 0.47451, 0.392157)

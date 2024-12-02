@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://csmnlp00qr024"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_iupgk"]
-[ext_resource type="Texture2D" uid="uid://bphs0pel71ck6" path="res://Hand.svg" id="2_fl6bq"]
+[ext_resource type="Texture2D" uid="uid://bw1bb67pmkcwj" path="res://Sprites/Hand.svg" id="2_1mjsb"]
 [ext_resource type="AudioStream" uid="uid://bxrprh4tgtr1x" path="res://Audio/CLICK.wav" id="3_xjqkd"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="4_a5esw"]
 
@@ -20,7 +20,7 @@ playerNumNode = NodePath("Label")
 self_modulate = Color(1, 1, 1, 0.862745)
 position = Vector2(56, 38)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_fl6bq")
+texture = ExtResource("2_1mjsb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 2.35619

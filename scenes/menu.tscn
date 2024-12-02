@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_feq21"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="2_h3ejs"]
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_r4j1i"]
-[ext_resource type="Texture2D" uid="uid://cgomrtinu1e1a" path="res://Icon.svg" id="2_va6ae"]
+[ext_resource type="Texture2D" uid="uid://cgomrtinu1e1a" path="res://Sprites/Icon.svg" id="2_va6ae"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_lqju5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccfls"]
