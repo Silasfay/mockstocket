@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl1cfmsybhbgc"]
+
+[ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="1_g6kti"]
+[ext_resource type="PackedScene" uid="uid://bsggwxepuois1" path="res://scenes/credits.tscn" id="2_3y388"]
+[ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="3_annna"]
+
+[sub_resource type="GDScript" id="GDScript_vqx41"]
+script/source = "extends Control
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0sj0l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iivor"]
+size = Vector2(246, 38)
+
+[node name="Taskbar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1036.0
+offset_right = 40.0
+offset_bottom = 1076.0
+theme = ExtResource("1_g6kti")
+script = SubResource("GDScript_vqx41")
+
+[node name="Credits" parent="." instance=ExtResource("2_3y388")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1.0
+offset_top = -380.0
+offset_right = 1.0
+offset_bottom = -380.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Taskbar" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 46.0
+texture = ExtResource("3_annna")
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1791.0
+offset_top = 10.0
+offset_right = 1919.0
+offset_bottom = 44.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hours" type="Label" parent="Time"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 1.0
+offset_right = 53.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "09"
+
+[node name="Colon" type="Label" parent="Time"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 1.0
+offset_right = 79.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = ":"
+
+[node name="Minutes" type="Label" parent="Time"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 1.0
+offset_right = 86.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "30"
+
+[node name="AMPM" type="Label" parent="Time"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 1.0
+offset_right = 117.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "AM"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(37, 22)
+
+[node name="MenuButton" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(2.5, 2.5)
+shape = SubResource("CircleShape2D_0sj0l")
+debug_color = Color(1, 0, 1, 0.419608)
+
+[node name="SettingsButton" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(96, -70)
+shape = SubResource("RectangleShape2D_iivor")

@@ -1,28 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8g67288pao6a"]
+[gd_scene load_steps=2 format=3 uid="uid://nojrtbdyp8jb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccfls"]
+size = Vector2(14.7285, 20)
 
 [node name="Boundaries" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(948, -89)
+position = Vector2(960, -92)
 scale = Vector2(131.058, 9.204)
 shape = SubResource("RectangleShape2D_ccfls")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(-96, 698)
+position = Vector2(-90, 540)
 rotation = -1.5708
 scale = Vector2(131.058, 9.204)
 shape = SubResource("RectangleShape2D_ccfls")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
-position = Vector2(2010, 599)
+position = Vector2(2012, 540)
 rotation = -1.5708
 scale = Vector2(131.058, 9.204)
 shape = SubResource("RectangleShape2D_ccfls")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
-position = Vector2(939, 1150)
+position = Vector2(960, 1172)
 rotation = 3.14159
 scale = Vector2(131.058, 9.204)
 shape = SubResource("RectangleShape2D_ccfls")
