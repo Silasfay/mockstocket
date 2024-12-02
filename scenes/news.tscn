@@ -45,26 +45,42 @@ layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
+[node name="TopSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="Comment" type="TextureRect" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(35, 35)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 texture = ExtResource("2_hf1ws")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="MiddleSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="Reblog" type="TextureRect" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(35, 40)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 texture = ExtResource("3_l1jxi")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="CenterSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="Like" type="TextureRect" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(35, 35)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 texture = ExtResource("4_wbqd3")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="BottomSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Flasher" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
