@@ -5,6 +5,7 @@ extends Node2D
 @export var stocks : Node2D
 @export var time : Label
 @export var mainMenu : PackedScene
+@export var portfolioManager : PortfolioManager
 
 var newsNodes : Array = []
 var stockNodes : Array = []
@@ -21,16 +22,19 @@ func checkControllers():
 			var newPlayer : Player = playerNode.instantiate()
 			newPlayer.device = each
 			newPlayer.position = Vector2(randf_range(600,1700), randf_range(200,950))
+			portfolioManager.activePlayers.append(newPlayer)
 			add_child(newPlayer)
 	if !connectedControllers:
 		var newPlayer : Player = playerNode.instantiate()
 		newPlayer.device = -1
 		newPlayer.position = Vector2(randf_range(600,1700), randf_range(200,950))
+		portfolioManager.activePlayers.append(newPlayer)
 		add_child(newPlayer)
 
 func _ready():
-	## Check if controllers are set. If there are controllers, spawn a player for each connected controller. If not, spawn only one for keyboard input.
+	## Check if controllers are set. If there are controllers, spawn a player for each connected controller. If not, spawn only one for keyboard input. Sends player data to portfolio manager to hook each portfolio to a spawned player.
 	checkControllers()
+	portfolioManager.start()
 	
 	## Initializes each stock to random unique stock, random volitility and a value between $100 and $500
 	stockNodes = stocks.get_children()
