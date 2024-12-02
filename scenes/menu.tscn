@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ejc0b7cfwxpg"]
+[gd_scene load_steps=9 format=3 uid="uid://ejc0b7cfwxpg"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_feq21"]
+[ext_resource type="PackedScene" uid="uid://csmnlp00qr024" path="res://scenes/player.tscn" id="2_033jx"]
 [ext_resource type="Theme" uid="uid://c7vltul64suij" path="res://theme.tres" id="2_h3ejs"]
 [ext_resource type="Texture2D" uid="uid://cnwdq13553o6c" path="res://Sprites/Wallpaper.svg" id="2_r4j1i"]
-[ext_resource type="Texture2D" uid="uid://cgomrtinu1e1a" path="res://Icon.svg" id="2_va6ae"]
+[ext_resource type="Texture2D" uid="uid://cgomrtinu1e1a" path="res://icon.svg" id="2_va6ae"]
+[ext_resource type="PackedScene" uid="uid://duntxvqb6ilo4" path="res://scenes/Tutrotial.tscn" id="3_l1y30"]
 [ext_resource type="Texture2D" uid="uid://cjgerqtemm81p" path="res://Sprites/Taskbar.svg" id="5_lqju5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccfls"]
@@ -18,6 +20,9 @@ grow_vertical = 2
 script = ExtResource("1_feq21")
 StartingButton = NodePath("HBoxContainer/VBoxContainer/StartButton")
 MainScene = "res://scenes/main.tscn"
+playerNode = ExtResource("2_033jx")
+TutNode = ExtResource("3_l1y30")
+TutorialS = "res://scenes/Tutrotial.tscn"
 
 [node name="Background" type="Control" parent="."]
 layout_mode = 1
